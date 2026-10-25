@@ -1,0 +1,315 @@
+{
+  "color": {
+    "product1": {
+      "value": "#C8A96A",
+      "type": "color",
+      "description": "signature accent"
+    },
+    "product2": {
+      "value": "#3A3F46",
+      "type": "color"
+    },
+    "product3": {
+      "value": "#8B96A5",
+      "type": "color"
+    },
+    "product1Hover": {
+      "value": "#D6BC85",
+      "type": "color",
+      "description": "primary fill, hover state (keeps text contrast)"
+    },
+    "product1Active": {
+      "value": "#B8964F",
+      "type": "color",
+      "description": "primary fill, pressed state"
+    },
+    "chartAccent": {
+      "value": "#A8843C",
+      "type": "color",
+      "description": "accent usable as a mark on white (>= 3:1); dark theme uses product1"
+    },
+    "chartAccent2": {
+      "value": "#2E3238",
+      "type": "color",
+      "description": "second series colour (expenses) usable as a mark on white (>= 3:1)"
+    },
+    "chartAccent2Dark": {
+      "value": "#8E99A8",
+      "type": "color",
+      "description": "second series colour on dark surfaces"
+    },
+    "onProduct1": {
+      "value": "{color.neutral.900}",
+      "type": "color"
+    },
+    "onProduct1Muted": {
+      "value": "#3F3724",
+      "type": "color",
+      "description": "secondary text on the product1 surface"
+    },
+    "onProduct2": {
+      "value": "{color.white}",
+      "type": "color"
+    },
+    "success": {
+      "value": "#1F9D5B",
+      "type": "color"
+    },
+    "warning": {
+      "value": "#E69A12",
+      "type": "color"
+    },
+    "danger": {
+      "value": "#D23B34",
+      "type": "color"
+    },
+    "info": {
+      "value": "#3B82C4",
+      "type": "color",
+      "description": "informational blue — identical in every brand (never a brand colour, so it cannot read as warning)"
+    },
+    "ink": {
+      "value": "#17181B",
+      "type": "color",
+      "description": "bank card face (dark tone) and inverse surfaces; brand-tinted graphite"
+    },
+    "surface": {
+      "value": "#1B1F24",
+      "type": "color",
+      "description": "dark-theme elevated surface (shared)"
+    },
+    "paper": {
+      "value": "#F3F1EC",
+      "type": "color",
+      "description": "light-theme page canvas, lightly brand-tinted"
+    },
+    "backdrop": {
+      "value": "#E2DDD2",
+      "type": "color",
+      "description": "light-theme area around the app frame"
+    },
+    "cardFace": {
+      "value": "#F5F6F8",
+      "type": "color",
+      "description": "bank card face (light tone)"
+    },
+    "neutral": {
+      "0": {
+        "value": "#FFFFFF",
+        "type": "color"
+      },
+      "50": {
+        "value": "#F5F6F8",
+        "type": "color"
+      },
+      "100": {
+        "value": "#F0F2F5",
+        "type": "color"
+      },
+      "200": {
+        "value": "#E3E6EA",
+        "type": "color"
+      },
+      "300": {
+        "value": "#CBD0D6",
+        "type": "color"
+      },
+      "400": {
+        "value": "#9AA1AB",
+        "type": "color"
+      },
+      "500": {
+        "value": "#646C77",
+        "type": "color"
+      },
+      "600": {
+        "value": "#4A525C",
+        "type": "color"
+      },
+      "700": {
+        "value": "#363D45",
+        "type": "color"
+      },
+      "800": {
+        "value": "#22262C",
+        "type": "color"
+      },
+      "900": {
+        "value": "#151719",
+        "type": "color"
+      },
+      "950": {
+        "value": "#0B0D0F",
+        "type": "color"
+      }
+    }
+  },
+  "fontFamily": {
+    "display": {
+      "value": "Inter",
+      "type": "fontFamilies"
+    },
+    "base": {
+      "value": "Inter",
+      "type": "fontFamilies"
+    }
+  },
+  "logo": {
+    "vanta": {
+      "value": "true",
+      "type": "boolean",
+      "description": "visibility switch: the layer for this brand's logo is shown only in its own Brand mode"
+    },
+    "pulse": {
+      "value": "false",
+      "type": "boolean",
+      "description": "visibility switch: the layer for this brand's logo is shown only in its own Brand mode"
+    },
+    "north": {
+      "value": "false",
+      "type": "boolean",
+      "description": "visibility switch: the layer for this brand's logo is shown only in its own Brand mode"
+    },
+    "flow": {
+      "value": "false",
+      "type": "boolean",
+      "description": "visibility switch: the layer for this brand's logo is shown only in its own Brand mode"
+    }
+  },
+  "space": {
+    "padding": {
+      "xs": {
+        "value": "{dimension.8}",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "{dimension.12}",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "{dimension.16}",
+        "type": "spacing"
+      },
+      "lg": {
+        "value": "{dimension.20}",
+        "type": "spacing"
+      },
+      "xl": {
+        "value": "{dimension.24}",
+        "type": "spacing"
+      }
+    },
+    "gap": {
+      "xs": {
+        "value": "{dimension.4}",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "{dimension.6}",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "{dimension.8}",
+        "type": "spacing"
+      },
+      "lg": {
+        "value": "{dimension.12}",
+        "type": "spacing"
+      },
+      "xl": {
+        "value": "{dimension.16}",
+        "type": "spacing"
+      }
+    }
+  },
+  "borderRadius": {
+    "control": {
+      "value": "{borderRadius.12}",
+      "type": "borderRadius"
+    },
+    "surface": {
+      "value": "{borderRadius.16}",
+      "type": "borderRadius"
+    },
+    "tile": {
+      "value": "{borderRadius.24}",
+      "type": "borderRadius",
+      "description": "bento tile / large card (20–28)"
+    },
+    "round": {
+      "value": "{borderRadius.999}",
+      "type": "borderRadius",
+      "description": "icon buttons: circle or rounded square, shape differs per brand"
+    },
+    "frame": {
+      "value": "{borderRadius.32}",
+      "type": "borderRadius",
+      "description": "outer app frame"
+    },
+    "full": {
+      "value": "{borderRadius.999}",
+      "type": "borderRadius",
+      "description": "pills, chips, avatars"
+    }
+  },
+  "borderWidth": {
+    "none": {
+      "value": "{borderWidth.0}",
+      "type": "borderWidth"
+    },
+    "control": {
+      "value": "{borderWidth.1}",
+      "type": "borderWidth"
+    },
+    "strong": {
+      "value": "{borderWidth.2}",
+      "type": "borderWidth"
+    }
+  },
+  "size": {
+    "control": {
+      "xs": {
+        "value": "{dimension.24}",
+        "type": "sizing"
+      },
+      "sm": {
+        "value": "{dimension.32}",
+        "type": "sizing"
+      },
+      "md": {
+        "value": "{dimension.40}",
+        "type": "sizing"
+      },
+      "lg": {
+        "value": "{dimension.48}",
+        "type": "sizing"
+      },
+      "xl": {
+        "value": "{dimension.56}",
+        "type": "sizing"
+      }
+    }
+  },
+  "iconSize": {
+    "xs": {
+      "value": "{dimension.12}",
+      "type": "sizing"
+    },
+    "sm": {
+      "value": "{dimension.16}",
+      "type": "sizing"
+    },
+    "md": {
+      "value": "{dimension.20}",
+      "type": "sizing"
+    },
+    "lg": {
+      "value": "{dimension.24}",
+      "type": "sizing"
+    },
+    "xl": {
+      "value": "{dimension.32}",
+      "type": "sizing"
+    }
+  }
+}

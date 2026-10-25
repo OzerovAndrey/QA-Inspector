@@ -1,0 +1,1 @@
+document.getElementById('theme').onclick=()=>{const dark=document.body.classList.toggle('dark');document.getElementById('theme').textContent=dark?'Тема: Dark → Light':'Тема: Light → Dark';};document.querySelectorAll('.sample').forEach(b=>b.onclick=()=>{document.getElementById('count').textContent=Number(document.getElementById('count').textContent)+1;});

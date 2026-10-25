@@ -1,0 +1,59 @@
+// Serialized by chrome.scripting.executeScript. Keep this function self-contained.
+export async function scanDocument(system,options={}){
+  const extracting=system.mode==='extract';
+  if(options.expectedUrl&&location.href!==options.expectedUrl)throw Error('Сторінка змінилася. Виберіть елемент знову.');
+  if(options.selector&&!document.querySelector(options.selector))throw Error('Елемент зник. Виберіть його знову.');
+  if((system.scope.origin!=='*'&&location.origin!==system.scope.origin)||!location.pathname.startsWith(system.scope.pathPrefix))throw Error('Ця дизайн-система призначена для '+system.scope.origin+system.scope.pathPrefix+'. Відкрийте відповідну сторінку.');
+  const brand=document.documentElement.getAttribute('data-brand')||system.defaultBrand||'default';
+  const theme=document.documentElement.getAttribute('data-theme')||system.defaultTheme||'light';
+  const context=extracting?'raw/default':options.context||brand+'/'+theme;
+  if(!system.contexts[context])throw Error('Невідомий бренд або тема: '+context+'. Додайте цей контекст у пакет дизайн-системи.');
+  for(const rule of system.rules)document.querySelector(rule.selector);
+  const candidatesSelector=system.candidatesSelector||'button,[role="button"],input,select,textarea,a.btn';
+  document.querySelector(candidatesSelector);
+  if(document.fonts)await Promise.race([document.fonts.ready,new Promise(resolve=>setTimeout(resolve,2000))]);
+  const all=options.selector?new Set([document.querySelector(options.selector)].filter(Boolean)):(extracting||system.mode==='tokens')?new Set(document.querySelectorAll('body,body *:not(script):not(style):not(svg):not(svg *)')):new Set(document.querySelectorAll(candidatesSelector));
+  if(!options.selector)for(const rule of system.rules)for(const el of document.querySelectorAll(rule.selector))all.add(el);
+  const elements=[],uncovered=[];let hidden=0,truncated=false,processed=0;
+  const path=el=>{const pieces=[];for(let n=el;n&&n.nodeType===1;n=n.parentElement){const tag=n.localName;const siblings=n.parentElement?[...n.parentElement.children].filter(x=>x.localName===tag):[n];pieces.unshift(tag+':nth-of-type('+(siblings.indexOf(n)+1)+')');if(n===document.documentElement)break;}return pieces.join(' > ');};
+  for(const el of all){
+    const css=getComputedStyle(el),rect=el.getBoundingClientRect();
+    if(!rect.width||!rect.height||css.display==='none'||css.visibility!=='visible'||el.closest('[hidden],[inert]')){hidden++;continue;}
+    if(++processed>1500){truncated=true;break;}
+    const selector=path(el),label=(el.getAttribute('aria-label')||el.getAttribute('placeholder')||el.innerText||el.getAttribute('title')||el.localName).trim().replace(/\s+/g,' ').slice(0,120);
+    let rules={},names=[];
+    for(const rule of system.rules)if(el.matches(rule.selector)){Object.assign(rules,rule.properties);names.push(rule.name);}
+    if(extracting){
+      names=[el.localName+(el.id?'#'+el.id:'')];
+      for(const prop of ['fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','color','backgroundColor','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','gap','rowGap','columnGap','width','height','borderTopLeftRadius','borderTopRightRadius','borderBottomLeftRadius','borderBottomRightRadius','borderTopWidth','borderTopColor','display','alignItems','justifyContent','boxShadow','backgroundImage'])rules[prop]={};
+    }
+    if(system.mode==='tokens'){
+      const catalog=system.catalog[context];
+      const hasText=[...el.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())||el.matches('input,select,textarea');
+      const candidates={color:'color',backgroundColor:'color',paddingTop:'spacing',paddingRight:'spacing',paddingBottom:'spacing',paddingLeft:'spacing',gap:'spacing',borderTopLeftRadius:'radius',borderTopRightRadius:'radius',borderBottomLeftRadius:'radius',borderBottomRightRadius:'radius',borderTopWidth:'border'};
+      if(hasText)Object.assign(candidates,{fontFamily:'fontFamily',fontSize:'fontSize',fontWeight:'fontWeight',lineHeight:'lineHeight',letterSpacing:'letterSpacing'});
+      for(const [prop,type]of Object.entries(candidates)){
+        const value=css[prop];if((type==='spacing'||type==='radius'||type==='border')&&(!parseFloat(value)||value==='normal'))continue;
+        if(prop==='backgroundColor'&&['rgba(0, 0, 0, 0)','transparent'].includes(value))continue;
+        if(prop==='color'&&!hasText)continue;
+        const tokens=Object.entries(catalog).filter(([,kind])=>kind===type||(type==='spacing'&&kind==='dimension')||(type==='radius'&&kind==='dimension')).map(([key])=>key);
+        if(tokens.length)rules[prop]={tokens,tolerance:type==='color'?1:['fontFamily','fontWeight'].includes(type)?0:.5};
+      }
+      if(Object.keys(rules).length)names=['Токени · '+el.localName];
+    }
+    const unmapped=!names.length&&Boolean(options.selector);
+    if(unmapped){names=['Елемент без правила'];for(const prop of ['fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','color','backgroundColor','paddingTop','paddingRight','paddingBottom','paddingLeft','gap','width','height','borderTopLeftRadius','borderTopRightRadius','borderBottomLeftRadius','borderBottomRightRadius'])rules[prop]={value:'Не задано у конфігурації',tolerance:0};}
+    if(!names.length){uncovered.push({selector,label});continue;}
+    const styles={fontSize:css.fontSize};for(const prop of Object.keys(rules))styles[prop]=css[prop];
+    if('width'in rules)styles.width=rect.width+'px';if('height'in rules)styles.height=rect.height+'px';
+    const unsupported=unmapped?Object.keys(rules):[];
+    if(css.backgroundImage!=='none')unsupported.push('backgroundColor');
+    for(let n=el;n;n=n.parentElement){const c=getComputedStyle(n);if(c.transform!=='none'||!['1','normal'].includes(c.zoom)){unsupported.push('width','height');break;}}
+    elements.push({selector,label,name:names[0],rules,styles,unsupported,unmapped});
+  }
+  return {url:location.href,rootFontSize:getComputedStyle(document.documentElement).fontSize,selection:options.selector||null,context,timestamp:new Date().toISOString(),elements,uncovered,hidden,truncated};
+}
+export function revealElement(selector){
+  const el=document.querySelector(selector);if(!el)return false;el.scrollIntoView({behavior:'instant',block:'center',inline:'center'});
+  const r=el.getBoundingClientRect(),overlay=document.createElement('div');overlay.style.cssText=`position:fixed;pointer-events:none;z-index:2147483647;border:3px solid #ef6944;border-radius:6px;background:#ef694419;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;box-sizing:border-box`;document.documentElement.append(overlay);setTimeout(()=>overlay.remove(),1800);return true;
+}

@@ -1,0 +1,179 @@
+{
+  "component": "Button",
+  "themes": {
+    "Light": {
+      "fontFamily": {
+        "value": "Arial, sans-serif",
+        "token": "font.family",
+        "tolerance": 0
+      },
+      "fontSize": {
+        "value": "14px",
+        "token": "font.size.button",
+        "tolerance": 0.5
+      },
+      "fontWeight": {
+        "value": "600",
+        "token": "font.weight.semibold",
+        "tolerance": 0
+      },
+      "lineHeight": {
+        "value": "20px",
+        "token": "font.line.button",
+        "tolerance": 0.5
+      },
+      "letterSpacing": {
+        "value": "0px",
+        "token": "font.tracking",
+        "tolerance": 0.1
+      },
+      "paddingTop": {
+        "value": "10px",
+        "token": "space.2.5",
+        "tolerance": 0.5
+      },
+      "paddingBottom": {
+        "value": "10px",
+        "token": "space.2.5",
+        "tolerance": 0.5
+      },
+      "paddingLeft": {
+        "value": "16px",
+        "token": "space.4",
+        "tolerance": 0.5
+      },
+      "paddingRight": {
+        "value": "16px",
+        "token": "space.4",
+        "tolerance": 0.5
+      },
+      "width": {
+        "value": "160px",
+        "token": "button.width",
+        "tolerance": 1
+      },
+      "height": {
+        "value": "40px",
+        "token": "button.height",
+        "tolerance": 1
+      },
+      "borderTopLeftRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "borderTopRightRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "borderBottomLeftRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "borderBottomRightRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "backgroundColor": {
+        "value": "#2563eb",
+        "token": "color.light.action",
+        "tolerance": 1
+      },
+      "color": {
+        "value": "#ffffff",
+        "token": "color.light.onAction",
+        "tolerance": 1
+      }
+    },
+    "Dark": {
+      "fontFamily": {
+        "value": "Arial, sans-serif",
+        "token": "font.family",
+        "tolerance": 0
+      },
+      "fontSize": {
+        "value": "14px",
+        "token": "font.size.button",
+        "tolerance": 0.5
+      },
+      "fontWeight": {
+        "value": "600",
+        "token": "font.weight.semibold",
+        "tolerance": 0
+      },
+      "lineHeight": {
+        "value": "20px",
+        "token": "font.line.button",
+        "tolerance": 0.5
+      },
+      "letterSpacing": {
+        "value": "0px",
+        "token": "font.tracking",
+        "tolerance": 0.1
+      },
+      "paddingTop": {
+        "value": "10px",
+        "token": "space.2.5",
+        "tolerance": 0.5
+      },
+      "paddingBottom": {
+        "value": "10px",
+        "token": "space.2.5",
+        "tolerance": 0.5
+      },
+      "paddingLeft": {
+        "value": "16px",
+        "token": "space.4",
+        "tolerance": 0.5
+      },
+      "paddingRight": {
+        "value": "16px",
+        "token": "space.4",
+        "tolerance": 0.5
+      },
+      "width": {
+        "value": "160px",
+        "token": "button.width",
+        "tolerance": 1
+      },
+      "height": {
+        "value": "40px",
+        "token": "button.height",
+        "tolerance": 1
+      },
+      "borderTopLeftRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "borderTopRightRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "borderBottomLeftRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "borderBottomRightRadius": {
+        "value": "8px",
+        "token": "radius.button",
+        "tolerance": 0.5
+      },
+      "backgroundColor": {
+        "value": "#93c5fd",
+        "token": "color.dark.action",
+        "tolerance": 1
+      },
+      "color": {
+        "value": "#172554",
+        "token": "color.dark.onAction",
+        "tolerance": 1
+      }
+    }
+  }
+}

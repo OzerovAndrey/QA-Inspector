@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+playwright-report/
+test-results/
+coverage/
+.env
+.env.*
+!.env.example
+/atlas-results.json
+/atlas-report.md
+/atlas-site-report.md
+/atlas-live.png
+/preview-*.png

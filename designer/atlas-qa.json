@@ -1,0 +1,2876 @@
+{
+  "schemaVersion": 1,
+  "name": "Atlas Finance",
+  "version": "1.0",
+  "crawl": {
+    "startUrls": [
+      "#/overview"
+    ],
+    "maxPages": 12,
+    "includeLinkedPages": true,
+    "readySelector": ".shell",
+    "settleMs": 600
+  },
+  "scope": {
+    "origin": "https://ozerovandrey.github.io",
+    "pathPrefix": "/atlas-finance/"
+  },
+  "source": {
+    "url": "https://github.com/OzerovAndrey/atlas-finance/tree/main/tokens",
+    "revision": "a967a2f3fd413ef04c8d3d61fb1bb5ca2ba41e7b",
+    "note": "Pinned repository snapshot; selectors mapped from src/styles/base.css. Expected values resolved from source tokens, never from the inspected page."
+  },
+  "contexts": {
+    "flow/light": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "20px",
+      "button.borderRadius": "16px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "10px",
+      "button.primary.bg.default": "#087A6F",
+      "button.primary.color.default": "#FFFFFF",
+      "button.primary.bg.hover": "#076A60",
+      "button.secondary.bg.default": "#F0F2F5",
+      "button.secondary.color.default": "#151719",
+      "button.secondary.bg.hover": "#E3E6EA",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#151719",
+      "button.text.bg.hover": "#F0F2F5",
+      "button.primary.bg.active": "#055750",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#FFFFFF",
+      "button.primary.bg.disabled": "#E3E6EA",
+      "button.primary.color.disabled": "#646C77",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "999px",
+      "color.text.secondary": "#4A525C",
+      "color.fill.secondary.default": "#F0F2F5",
+      "color.text.primary": "#151719",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#FFFFFF",
+      "roundButton.color.default": "#151719",
+      "roundButton.bg.hover": "#E3E6EA",
+      "navItem.paddingH": "20px",
+      "navItem.paddingV": "16px",
+      "navItem.borderRadius": "16px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#4A525C",
+      "navItem.gap": "10px",
+      "navItem.bg.hover": "#F0F2F5",
+      "navItem.color.hover": "#4A525C",
+      "navItem.selected.bg": "#FFFFFF",
+      "navItem.selected.color": "#151719",
+      "tile.paddingH": "24px",
+      "tile.paddingV": "24px",
+      "tile.borderRadius": "28px",
+      "tile.bg": "#FFFFFF",
+      "tile.br": "#F0F2F5",
+      "tile.gap": "10px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#151719",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#4A525C",
+      "input.size.md": "40px",
+      "input.paddingH.md": "20px",
+      "input.borderRadius": "16px",
+      "input.bg.default": "#F0F2F5",
+      "input.color.default": "#151719",
+      "input.bg.hover": "#F0F2F5",
+      "input.bg.focus": "#FFFFFF",
+      "input.bg.error": "#FFFFFF",
+      "input.color.error": "#151719",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#F0F2F5",
+      "switch.track.on": "#087A6F",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "16px",
+      "borderRadius.control": "16px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#4A525C",
+      "segmented.item.hover.bg": "#E3E6EA",
+      "segmented.item.selected.bg": "#FFFFFF",
+      "segmented.item.selected.color": "#151719",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "flow/dark": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "20px",
+      "button.borderRadius": "16px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "10px",
+      "button.primary.bg.default": "#087A6F",
+      "button.primary.color.default": "#FFFFFF",
+      "button.primary.bg.hover": "#076A60",
+      "button.secondary.bg.default": "#22262C",
+      "button.secondary.color.default": "#F5F6F8",
+      "button.secondary.bg.hover": "#363D45",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#F5F6F8",
+      "button.text.bg.hover": "#22262C",
+      "button.primary.bg.active": "#055750",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#FFFFFF",
+      "button.primary.bg.disabled": "#363D45",
+      "button.primary.color.disabled": "#9AA1AB",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "999px",
+      "color.text.secondary": "#CBD0D6",
+      "color.fill.secondary.default": "#22262C",
+      "color.text.primary": "#F5F6F8",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#151719",
+      "roundButton.color.default": "#F5F6F8",
+      "roundButton.bg.hover": "#363D45",
+      "navItem.paddingH": "20px",
+      "navItem.paddingV": "16px",
+      "navItem.borderRadius": "16px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#CBD0D6",
+      "navItem.gap": "10px",
+      "navItem.bg.hover": "#22262C",
+      "navItem.color.hover": "#CBD0D6",
+      "navItem.selected.bg": "#151719",
+      "navItem.selected.color": "#F5F6F8",
+      "tile.paddingH": "24px",
+      "tile.paddingV": "24px",
+      "tile.borderRadius": "28px",
+      "tile.bg": "#151719",
+      "tile.br": "#22262C",
+      "tile.gap": "10px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#F5F6F8",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#CBD0D6",
+      "input.size.md": "40px",
+      "input.paddingH.md": "20px",
+      "input.borderRadius": "16px",
+      "input.bg.default": "#22262C",
+      "input.color.default": "#F5F6F8",
+      "input.bg.hover": "#22262C",
+      "input.bg.focus": "#151719",
+      "input.bg.error": "#151719",
+      "input.color.error": "#F5F6F8",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#22262C",
+      "switch.track.on": "#087A6F",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "16px",
+      "borderRadius.control": "16px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#CBD0D6",
+      "segmented.item.hover.bg": "#363D45",
+      "segmented.item.selected.bg": "#151719",
+      "segmented.item.selected.color": "#F5F6F8",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "north/light": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "16px",
+      "button.borderRadius": "10px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "8px",
+      "button.primary.bg.default": "#2A5FEA",
+      "button.primary.color.default": "#FFFFFF",
+      "button.primary.bg.hover": "#1C4FD4",
+      "button.secondary.bg.default": "#F0F2F5",
+      "button.secondary.color.default": "#151719",
+      "button.secondary.bg.hover": "#E3E6EA",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#151719",
+      "button.text.bg.hover": "#F0F2F5",
+      "button.primary.bg.active": "#1640B0",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#FFFFFF",
+      "button.primary.bg.disabled": "#E3E6EA",
+      "button.primary.color.disabled": "#646C77",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "12px",
+      "color.text.secondary": "#4A525C",
+      "color.fill.secondary.default": "#F0F2F5",
+      "color.text.primary": "#151719",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#FFFFFF",
+      "roundButton.color.default": "#151719",
+      "roundButton.bg.hover": "#E3E6EA",
+      "navItem.paddingH": "16px",
+      "navItem.paddingV": "12px",
+      "navItem.borderRadius": "10px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#4A525C",
+      "navItem.gap": "8px",
+      "navItem.bg.hover": "#F0F2F5",
+      "navItem.color.hover": "#4A525C",
+      "navItem.selected.bg": "#FFFFFF",
+      "navItem.selected.color": "#151719",
+      "tile.paddingH": "20px",
+      "tile.paddingV": "20px",
+      "tile.borderRadius": "20px",
+      "tile.bg": "#FFFFFF",
+      "tile.br": "#F0F2F5",
+      "tile.gap": "8px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#151719",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#4A525C",
+      "input.size.md": "40px",
+      "input.paddingH.md": "16px",
+      "input.borderRadius": "10px",
+      "input.bg.default": "#F0F2F5",
+      "input.color.default": "#151719",
+      "input.bg.hover": "#F0F2F5",
+      "input.bg.focus": "#FFFFFF",
+      "input.bg.error": "#FFFFFF",
+      "input.color.error": "#151719",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#F0F2F5",
+      "switch.track.on": "#2A5FEA",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "12px",
+      "borderRadius.control": "10px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#4A525C",
+      "segmented.item.hover.bg": "#E3E6EA",
+      "segmented.item.selected.bg": "#FFFFFF",
+      "segmented.item.selected.color": "#151719",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "north/dark": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "16px",
+      "button.borderRadius": "10px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "8px",
+      "button.primary.bg.default": "#2A5FEA",
+      "button.primary.color.default": "#FFFFFF",
+      "button.primary.bg.hover": "#1C4FD4",
+      "button.secondary.bg.default": "#22262C",
+      "button.secondary.color.default": "#F5F6F8",
+      "button.secondary.bg.hover": "#363D45",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#F5F6F8",
+      "button.text.bg.hover": "#22262C",
+      "button.primary.bg.active": "#1640B0",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#FFFFFF",
+      "button.primary.bg.disabled": "#363D45",
+      "button.primary.color.disabled": "#9AA1AB",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "12px",
+      "color.text.secondary": "#CBD0D6",
+      "color.fill.secondary.default": "#22262C",
+      "color.text.primary": "#F5F6F8",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#151719",
+      "roundButton.color.default": "#F5F6F8",
+      "roundButton.bg.hover": "#363D45",
+      "navItem.paddingH": "16px",
+      "navItem.paddingV": "12px",
+      "navItem.borderRadius": "10px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#CBD0D6",
+      "navItem.gap": "8px",
+      "navItem.bg.hover": "#22262C",
+      "navItem.color.hover": "#CBD0D6",
+      "navItem.selected.bg": "#151719",
+      "navItem.selected.color": "#F5F6F8",
+      "tile.paddingH": "20px",
+      "tile.paddingV": "20px",
+      "tile.borderRadius": "20px",
+      "tile.bg": "#151719",
+      "tile.br": "#22262C",
+      "tile.gap": "8px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#F5F6F8",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#CBD0D6",
+      "input.size.md": "40px",
+      "input.paddingH.md": "16px",
+      "input.borderRadius": "10px",
+      "input.bg.default": "#22262C",
+      "input.color.default": "#F5F6F8",
+      "input.bg.hover": "#22262C",
+      "input.bg.focus": "#151719",
+      "input.bg.error": "#151719",
+      "input.color.error": "#F5F6F8",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#22262C",
+      "switch.track.on": "#2A5FEA",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "12px",
+      "borderRadius.control": "10px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#CBD0D6",
+      "segmented.item.hover.bg": "#363D45",
+      "segmented.item.selected.bg": "#151719",
+      "segmented.item.selected.color": "#F5F6F8",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "pulse/light": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "20px",
+      "button.borderRadius": "999px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "10px",
+      "button.primary.bg.default": "#C6F432",
+      "button.primary.color.default": "#151719",
+      "button.primary.bg.hover": "#D4F85A",
+      "button.secondary.bg.default": "#F0F2F5",
+      "button.secondary.color.default": "#151719",
+      "button.secondary.bg.hover": "#E3E6EA",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#151719",
+      "button.text.bg.hover": "#F0F2F5",
+      "button.primary.bg.active": "#B2DD1C",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#151719",
+      "button.primary.bg.disabled": "#E3E6EA",
+      "button.primary.color.disabled": "#646C77",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "999px",
+      "color.text.secondary": "#4A525C",
+      "color.fill.secondary.default": "#F0F2F5",
+      "color.text.primary": "#151719",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#FFFFFF",
+      "roundButton.color.default": "#151719",
+      "roundButton.bg.hover": "#E3E6EA",
+      "navItem.paddingH": "20px",
+      "navItem.paddingV": "16px",
+      "navItem.borderRadius": "999px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#4A525C",
+      "navItem.gap": "10px",
+      "navItem.bg.hover": "#F0F2F5",
+      "navItem.color.hover": "#4A525C",
+      "navItem.selected.bg": "#FFFFFF",
+      "navItem.selected.color": "#151719",
+      "tile.paddingH": "24px",
+      "tile.paddingV": "24px",
+      "tile.borderRadius": "28px",
+      "tile.bg": "#FFFFFF",
+      "tile.br": "#F0F2F5",
+      "tile.gap": "10px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#151719",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#4A525C",
+      "input.size.md": "40px",
+      "input.paddingH.md": "20px",
+      "input.borderRadius": "999px",
+      "input.bg.default": "#F0F2F5",
+      "input.color.default": "#151719",
+      "input.bg.hover": "#F0F2F5",
+      "input.bg.focus": "#FFFFFF",
+      "input.bg.error": "#FFFFFF",
+      "input.color.error": "#151719",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#F0F2F5",
+      "switch.track.on": "#C6F432",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "16px",
+      "borderRadius.control": "999px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#4A525C",
+      "segmented.item.hover.bg": "#E3E6EA",
+      "segmented.item.selected.bg": "#FFFFFF",
+      "segmented.item.selected.color": "#151719",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "pulse/dark": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "20px",
+      "button.borderRadius": "999px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "10px",
+      "button.primary.bg.default": "#C6F432",
+      "button.primary.color.default": "#151719",
+      "button.primary.bg.hover": "#D4F85A",
+      "button.secondary.bg.default": "#22262C",
+      "button.secondary.color.default": "#F5F6F8",
+      "button.secondary.bg.hover": "#363D45",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#F5F6F8",
+      "button.text.bg.hover": "#22262C",
+      "button.primary.bg.active": "#B2DD1C",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#151719",
+      "button.primary.bg.disabled": "#363D45",
+      "button.primary.color.disabled": "#9AA1AB",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "999px",
+      "color.text.secondary": "#CBD0D6",
+      "color.fill.secondary.default": "#22262C",
+      "color.text.primary": "#F5F6F8",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#151719",
+      "roundButton.color.default": "#F5F6F8",
+      "roundButton.bg.hover": "#363D45",
+      "navItem.paddingH": "20px",
+      "navItem.paddingV": "16px",
+      "navItem.borderRadius": "999px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#CBD0D6",
+      "navItem.gap": "10px",
+      "navItem.bg.hover": "#22262C",
+      "navItem.color.hover": "#CBD0D6",
+      "navItem.selected.bg": "#151719",
+      "navItem.selected.color": "#F5F6F8",
+      "tile.paddingH": "24px",
+      "tile.paddingV": "24px",
+      "tile.borderRadius": "28px",
+      "tile.bg": "#151719",
+      "tile.br": "#22262C",
+      "tile.gap": "10px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#F5F6F8",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#CBD0D6",
+      "input.size.md": "40px",
+      "input.paddingH.md": "20px",
+      "input.borderRadius": "999px",
+      "input.bg.default": "#22262C",
+      "input.color.default": "#F5F6F8",
+      "input.bg.hover": "#22262C",
+      "input.bg.focus": "#151719",
+      "input.bg.error": "#151719",
+      "input.color.error": "#F5F6F8",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#22262C",
+      "switch.track.on": "#C6F432",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "16px",
+      "borderRadius.control": "999px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#CBD0D6",
+      "segmented.item.hover.bg": "#363D45",
+      "segmented.item.selected.bg": "#151719",
+      "segmented.item.selected.color": "#F5F6F8",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "vanta/light": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "16px",
+      "button.borderRadius": "12px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "8px",
+      "button.primary.bg.default": "#C8A96A",
+      "button.primary.color.default": "#151719",
+      "button.primary.bg.hover": "#D6BC85",
+      "button.secondary.bg.default": "#F0F2F5",
+      "button.secondary.color.default": "#151719",
+      "button.secondary.bg.hover": "#E3E6EA",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#151719",
+      "button.text.bg.hover": "#F0F2F5",
+      "button.primary.bg.active": "#B8964F",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#151719",
+      "button.primary.bg.disabled": "#E3E6EA",
+      "button.primary.color.disabled": "#646C77",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "999px",
+      "color.text.secondary": "#4A525C",
+      "color.fill.secondary.default": "#F0F2F5",
+      "color.text.primary": "#151719",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#FFFFFF",
+      "roundButton.color.default": "#151719",
+      "roundButton.bg.hover": "#E3E6EA",
+      "navItem.paddingH": "16px",
+      "navItem.paddingV": "12px",
+      "navItem.borderRadius": "12px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#4A525C",
+      "navItem.gap": "8px",
+      "navItem.bg.hover": "#F0F2F5",
+      "navItem.color.hover": "#4A525C",
+      "navItem.selected.bg": "#FFFFFF",
+      "navItem.selected.color": "#151719",
+      "tile.paddingH": "20px",
+      "tile.paddingV": "20px",
+      "tile.borderRadius": "24px",
+      "tile.bg": "#FFFFFF",
+      "tile.br": "#F0F2F5",
+      "tile.gap": "8px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#151719",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#4A525C",
+      "input.size.md": "40px",
+      "input.paddingH.md": "16px",
+      "input.borderRadius": "12px",
+      "input.bg.default": "#F0F2F5",
+      "input.color.default": "#151719",
+      "input.bg.hover": "#F0F2F5",
+      "input.bg.focus": "#FFFFFF",
+      "input.bg.error": "#FFFFFF",
+      "input.color.error": "#151719",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#F0F2F5",
+      "switch.track.on": "#C8A96A",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "12px",
+      "borderRadius.control": "12px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#4A525C",
+      "segmented.item.hover.bg": "#E3E6EA",
+      "segmented.item.selected.bg": "#FFFFFF",
+      "segmented.item.selected.color": "#151719",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    },
+    "vanta/dark": {
+      "button.size.md": "40px",
+      "button.paddingH.md": "16px",
+      "button.borderRadius": "12px",
+      "button.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "button.label.md.fontSize": "14px",
+      "button.label.md.fontWeight": "600",
+      "button.label.md.lineHeight": "20px",
+      "button.gap.md": "8px",
+      "button.primary.bg.default": "#C8A96A",
+      "button.primary.color.default": "#151719",
+      "button.primary.bg.hover": "#D6BC85",
+      "button.secondary.bg.default": "#22262C",
+      "button.secondary.color.default": "#F5F6F8",
+      "button.secondary.bg.hover": "#363D45",
+      "button.text.bg.default": "rgba(0, 0, 0, 0)",
+      "button.text.color.default": "#F5F6F8",
+      "button.text.bg.hover": "#22262C",
+      "button.primary.bg.active": "#B8964F",
+      "hero.cta.bg": "#151719",
+      "hero.cta.color": "#FFFFFF",
+      "hero.color": "#151719",
+      "button.primary.bg.disabled": "#363D45",
+      "button.primary.color.disabled": "#9AA1AB",
+      "roundButton.size.sm": "32px",
+      "roundButton.borderRadius": "999px",
+      "color.text.secondary": "#CBD0D6",
+      "color.fill.secondary.default": "#22262C",
+      "color.text.primary": "#F5F6F8",
+      "roundButton.size.md": "40px",
+      "roundButton.bg.default": "#151719",
+      "roundButton.color.default": "#F5F6F8",
+      "roundButton.bg.hover": "#363D45",
+      "navItem.paddingH": "16px",
+      "navItem.paddingV": "12px",
+      "navItem.borderRadius": "12px",
+      "navItem.text.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "navItem.text.fontSize": "14px",
+      "navItem.text.fontWeight": "600",
+      "navItem.text.lineHeight": "20px",
+      "navItem.color.default": "#CBD0D6",
+      "navItem.gap": "8px",
+      "navItem.bg.hover": "#22262C",
+      "navItem.color.hover": "#CBD0D6",
+      "navItem.selected.bg": "#151719",
+      "navItem.selected.color": "#F5F6F8",
+      "tile.paddingH": "20px",
+      "tile.paddingV": "20px",
+      "tile.borderRadius": "24px",
+      "tile.bg": "#151719",
+      "tile.br": "#22262C",
+      "tile.gap": "8px",
+      "tile.titleText.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "tile.titleText.fontSize": "18px",
+      "tile.titleText.fontWeight": "600",
+      "tile.titleText.lineHeight": "26px",
+      "tile.title": "#F5F6F8",
+      "tile.subtitleText.fontSize": "14px",
+      "tile.subtitleText.lineHeight": "20px",
+      "tile.subtitle": "#CBD0D6",
+      "input.size.md": "40px",
+      "input.paddingH.md": "16px",
+      "input.borderRadius": "12px",
+      "input.bg.default": "#22262C",
+      "input.color.default": "#F5F6F8",
+      "input.bg.hover": "#22262C",
+      "input.bg.focus": "#151719",
+      "input.bg.error": "#151719",
+      "input.color.error": "#F5F6F8",
+      "typography.numeric.amountLg.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountLg.fontSize": "24px",
+      "typography.numeric.amountLg.fontWeight": "500",
+      "switch.width": "48px",
+      "switch.height": "24px",
+      "switch.track.off": "#22262C",
+      "switch.track.on": "#C8A96A",
+      "size.control.sm": "32px",
+      "segmented.paddingH": "12px",
+      "borderRadius.control": "12px",
+      "segmented.text.fontSize": "14px",
+      "segmented.text.fontWeight": "600",
+      "segmented.item.color": "#CBD0D6",
+      "segmented.item.hover.bg": "#363D45",
+      "segmented.item.selected.bg": "#151719",
+      "segmented.item.selected.color": "#F5F6F8",
+      "typography.display.d1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d1.fontSize": "56px",
+      "typography.display.d1.fontWeight": "500",
+      "typography.display.d1.lineHeight": "64px",
+      "typography.display.d1.letterSpacing": "-0.02em",
+      "typography.display.d2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d2.fontSize": "48px",
+      "typography.display.d2.fontWeight": "500",
+      "typography.display.d2.lineHeight": "56px",
+      "typography.display.d2.letterSpacing": "-0.02em",
+      "typography.display.d3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.display.d3.fontSize": "40px",
+      "typography.display.d3.fontWeight": "500",
+      "typography.display.d3.lineHeight": "48px",
+      "typography.display.d3.letterSpacing": "-0.02em",
+      "typography.title.t1.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t1.fontSize": "32px",
+      "typography.title.t1.fontWeight": "600",
+      "typography.title.t1.lineHeight": "40px",
+      "typography.title.t1.letterSpacing": "-0.01em",
+      "typography.title.t2.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t2.fontSize": "28px",
+      "typography.title.t2.fontWeight": "600",
+      "typography.title.t2.lineHeight": "36px",
+      "typography.title.t2.letterSpacing": "-0.01em",
+      "typography.title.t3.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t3.fontSize": "24px",
+      "typography.title.t3.fontWeight": "600",
+      "typography.title.t3.lineHeight": "32px",
+      "typography.title.t3.letterSpacing": "0em",
+      "typography.title.t4.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t4.fontSize": "20px",
+      "typography.title.t4.fontWeight": "600",
+      "typography.title.t4.lineHeight": "28px",
+      "typography.title.t4.letterSpacing": "0em",
+      "typography.title.t5.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.title.t5.fontSize": "18px",
+      "typography.title.t5.fontWeight": "600",
+      "typography.title.t5.lineHeight": "26px",
+      "typography.title.t5.letterSpacing": "0em",
+      "typography.body.lg.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.regular.fontSize": "18px",
+      "typography.body.lg.regular.fontWeight": "400",
+      "typography.body.lg.regular.lineHeight": "28px",
+      "typography.body.lg.regular.letterSpacing": "0em",
+      "typography.body.lg.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.lg.strong.fontSize": "18px",
+      "typography.body.lg.strong.fontWeight": "600",
+      "typography.body.lg.strong.lineHeight": "28px",
+      "typography.body.lg.strong.letterSpacing": "0em",
+      "typography.body.md.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.regular.fontSize": "16px",
+      "typography.body.md.regular.fontWeight": "400",
+      "typography.body.md.regular.lineHeight": "24px",
+      "typography.body.md.regular.letterSpacing": "0em",
+      "typography.body.md.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.md.strong.fontSize": "16px",
+      "typography.body.md.strong.fontWeight": "600",
+      "typography.body.md.strong.lineHeight": "24px",
+      "typography.body.md.strong.letterSpacing": "0em",
+      "typography.body.sm.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.regular.fontSize": "14px",
+      "typography.body.sm.regular.fontWeight": "400",
+      "typography.body.sm.regular.lineHeight": "20px",
+      "typography.body.sm.regular.letterSpacing": "0em",
+      "typography.body.sm.strong.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.body.sm.strong.fontSize": "14px",
+      "typography.body.sm.strong.fontWeight": "600",
+      "typography.body.sm.strong.lineHeight": "20px",
+      "typography.body.sm.strong.letterSpacing": "0em",
+      "typography.label.md.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.md.fontSize": "14px",
+      "typography.label.md.fontWeight": "600",
+      "typography.label.md.lineHeight": "20px",
+      "typography.label.md.letterSpacing": "0em",
+      "typography.label.sm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.sm.fontSize": "12px",
+      "typography.label.sm.fontWeight": "600",
+      "typography.label.sm.lineHeight": "16px",
+      "typography.label.sm.letterSpacing": "0em",
+      "typography.label.overline.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.label.overline.fontSize": "12px",
+      "typography.label.overline.fontWeight": "600",
+      "typography.label.overline.lineHeight": "16px",
+      "typography.label.overline.letterSpacing": "0.08em",
+      "typography.caption.regular.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.caption.regular.fontSize": "12px",
+      "typography.caption.regular.fontWeight": "400",
+      "typography.caption.regular.lineHeight": "16px",
+      "typography.caption.regular.letterSpacing": "0em",
+      "typography.numeric.balance.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.balance.fontSize": "48px",
+      "typography.numeric.balance.fontWeight": "500",
+      "typography.numeric.balance.lineHeight": "56px",
+      "typography.numeric.balance.letterSpacing": "-0.02em",
+      "typography.numeric.amountXl.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountXl.fontSize": "28px",
+      "typography.numeric.amountXl.fontWeight": "500",
+      "typography.numeric.amountXl.lineHeight": "36px",
+      "typography.numeric.amountXl.letterSpacing": "-0.01em",
+      "typography.numeric.amountLg.lineHeight": "32px",
+      "typography.numeric.amountLg.letterSpacing": "0em",
+      "typography.numeric.amountMd.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountMd.fontSize": "16px",
+      "typography.numeric.amountMd.fontWeight": "600",
+      "typography.numeric.amountMd.lineHeight": "24px",
+      "typography.numeric.amountMd.letterSpacing": "0em",
+      "typography.numeric.amountSm.fontFamily": "\"Inter Variable\", \"Inter\", system-ui, sans-serif",
+      "typography.numeric.amountSm.fontSize": "14px",
+      "typography.numeric.amountSm.fontWeight": "500",
+      "typography.numeric.amountSm.lineHeight": "20px",
+      "typography.numeric.amountSm.letterSpacing": "0em"
+    }
+  },
+  "rules": [
+    {
+      "selector": ".btn",
+      "name": "Button",
+      "properties": {
+        "height": {
+          "token": "button.size.md",
+          "tolerance": 0.5
+        },
+        "paddingLeft": {
+          "token": "button.paddingH.md",
+          "tolerance": 0.5
+        },
+        "paddingRight": {
+          "token": "button.paddingH.md",
+          "tolerance": 0.5
+        },
+        "paddingTop": {
+          "value": "0px",
+          "tolerance": 0.5
+        },
+        "paddingBottom": {
+          "value": "0px",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "button.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderTopRightRadius": {
+          "token": "button.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomLeftRadius": {
+          "token": "button.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomRightRadius": {
+          "token": "button.borderRadius",
+          "tolerance": 0.5
+        },
+        "fontFamily": {
+          "token": "button.label.md.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "button.label.md.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "button.label.md.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "button.label.md.lineHeight",
+          "tolerance": 0.5
+        },
+        "gap": {
+          "token": "button.gap.md",
+          "tolerance": 0.5
+        }
+      }
+    },
+    {
+      "selector": ".btn--primary",
+      "name": "Button · primary",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.primary.bg.default",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "button.primary.color.default",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--primary:hover",
+      "name": "Button · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.primary.bg.hover",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--secondary",
+      "name": "Button · secondary",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.secondary.bg.default",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "button.secondary.color.default",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--secondary:hover",
+      "name": "Button · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.secondary.bg.hover",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--ghost",
+      "name": "Button · ghost",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.text.bg.default",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "button.text.color.default",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--ghost:hover",
+      "name": "Button · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.text.bg.hover",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--primary:active",
+      "name": "Button · active",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.primary.bg.active",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--cta",
+      "name": "Button · hero CTA",
+      "properties": {
+        "backgroundColor": {
+          "token": "hero.cta.bg",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "hero.cta.color",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn--hero-ghost",
+      "name": "Button · hero ghost",
+      "properties": {
+        "backgroundColor": {
+          "value": "transparent",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "hero.color",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".btn:disabled",
+      "name": "Button · disabled",
+      "properties": {
+        "backgroundColor": {
+          "token": "button.primary.bg.disabled",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "button.primary.color.disabled",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".icon-btn",
+      "name": "Icon button",
+      "properties": {
+        "width": {
+          "token": "roundButton.size.sm",
+          "tolerance": 0.5
+        },
+        "height": {
+          "token": "roundButton.size.sm",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "roundButton.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderTopRightRadius": {
+          "token": "roundButton.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomLeftRadius": {
+          "token": "roundButton.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomRightRadius": {
+          "token": "roundButton.borderRadius",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "value": "transparent",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "color.text.secondary",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".icon-btn:hover",
+      "name": "Icon button · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "color.fill.secondary.default",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "color.text.primary",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".icon-btn--outline",
+      "name": "Round button",
+      "properties": {
+        "width": {
+          "token": "roundButton.size.md",
+          "tolerance": 0.5
+        },
+        "height": {
+          "token": "roundButton.size.md",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "roundButton.bg.default",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "roundButton.color.default",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".icon-btn--outline:hover",
+      "name": "Round button · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "roundButton.bg.hover",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".nav-item",
+      "name": "Navigation",
+      "properties": {
+        "paddingLeft": {
+          "token": "navItem.paddingH",
+          "tolerance": 0.5
+        },
+        "paddingRight": {
+          "token": "navItem.paddingH",
+          "tolerance": 0.5
+        },
+        "paddingTop": {
+          "token": "navItem.paddingV",
+          "tolerance": 0.5
+        },
+        "paddingBottom": {
+          "token": "navItem.paddingV",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "navItem.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderTopRightRadius": {
+          "token": "navItem.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomLeftRadius": {
+          "token": "navItem.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomRightRadius": {
+          "token": "navItem.borderRadius",
+          "tolerance": 0.5
+        },
+        "fontFamily": {
+          "token": "navItem.text.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "navItem.text.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "navItem.text.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "navItem.text.lineHeight",
+          "tolerance": 0.5
+        },
+        "color": {
+          "token": "navItem.color.default",
+          "tolerance": 1
+        },
+        "gap": {
+          "token": "navItem.gap",
+          "tolerance": 0.5
+        }
+      }
+    },
+    {
+      "selector": ".nav-item:hover",
+      "name": "Navigation · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "navItem.bg.hover",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "navItem.color.hover",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".nav-item[aria-current=\"page\"]",
+      "name": "Navigation · selected",
+      "properties": {
+        "backgroundColor": {
+          "token": "navItem.selected.bg",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "navItem.selected.color",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".tile",
+      "name": "Tile",
+      "properties": {
+        "paddingLeft": {
+          "token": "tile.paddingH",
+          "tolerance": 0.5
+        },
+        "paddingRight": {
+          "token": "tile.paddingH",
+          "tolerance": 0.5
+        },
+        "paddingTop": {
+          "token": "tile.paddingV",
+          "tolerance": 0.5
+        },
+        "paddingBottom": {
+          "token": "tile.paddingV",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "tile.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderTopRightRadius": {
+          "token": "tile.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomLeftRadius": {
+          "token": "tile.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomRightRadius": {
+          "token": "tile.borderRadius",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "tile.bg",
+          "tolerance": 1
+        },
+        "borderTopColor": {
+          "token": "tile.br",
+          "tolerance": 1
+        },
+        "gap": {
+          "token": "tile.gap",
+          "tolerance": 0.5
+        }
+      }
+    },
+    {
+      "selector": ".tile__title",
+      "name": "Tile title",
+      "properties": {
+        "fontFamily": {
+          "token": "tile.titleText.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "tile.titleText.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "tile.titleText.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "tile.titleText.lineHeight",
+          "tolerance": 0.5
+        },
+        "color": {
+          "token": "tile.title",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".tile__subtitle",
+      "name": "Tile subtitle",
+      "properties": {
+        "fontSize": {
+          "token": "tile.subtitleText.fontSize",
+          "tolerance": 0.5
+        },
+        "lineHeight": {
+          "token": "tile.subtitleText.lineHeight",
+          "tolerance": 0.5
+        },
+        "color": {
+          "token": "tile.subtitle",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".input,.select select",
+      "name": "Input",
+      "properties": {
+        "height": {
+          "token": "input.size.md",
+          "tolerance": 0.5
+        },
+        "paddingLeft": {
+          "token": "input.paddingH.md",
+          "tolerance": 0.5
+        },
+        "paddingRight": {
+          "token": "input.paddingH.md",
+          "tolerance": 0.5
+        },
+        "paddingTop": {
+          "value": "0px",
+          "tolerance": 0.5
+        },
+        "paddingBottom": {
+          "value": "0px",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "input.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderTopRightRadius": {
+          "token": "input.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomLeftRadius": {
+          "token": "input.borderRadius",
+          "tolerance": 0.5
+        },
+        "borderBottomRightRadius": {
+          "token": "input.borderRadius",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "input.bg.default",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "input.color.default",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".input:hover,.select select:hover",
+      "name": "Input · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "input.bg.hover",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".input:focus",
+      "name": "Input · focus",
+      "properties": {
+        "backgroundColor": {
+          "token": "input.bg.focus",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".input[aria-invalid=\"true\"]",
+      "name": "Input · error",
+      "properties": {
+        "backgroundColor": {
+          "token": "input.bg.error",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "input.color.error",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".input--amount",
+      "name": "Amount input",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.numeric.amountLg.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.numeric.amountLg.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.numeric.amountLg.fontWeight",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": ".switch",
+      "name": "Switch",
+      "properties": {
+        "width": {
+          "token": "switch.width",
+          "tolerance": 0.5
+        },
+        "height": {
+          "token": "switch.height",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "switch.track.off",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".switch[aria-checked=\"true\"]",
+      "name": "Switch · on",
+      "properties": {
+        "backgroundColor": {
+          "token": "switch.track.on",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".segmented button",
+      "name": "Segmented button",
+      "properties": {
+        "height": {
+          "token": "size.control.sm",
+          "tolerance": 0.5
+        },
+        "paddingLeft": {
+          "token": "segmented.paddingH",
+          "tolerance": 0.5
+        },
+        "paddingRight": {
+          "token": "segmented.paddingH",
+          "tolerance": 0.5
+        },
+        "paddingTop": {
+          "value": "0px",
+          "tolerance": 0.5
+        },
+        "paddingBottom": {
+          "value": "0px",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "borderRadius.control",
+          "tolerance": 0.5
+        },
+        "borderTopRightRadius": {
+          "token": "borderRadius.control",
+          "tolerance": 0.5
+        },
+        "borderBottomLeftRadius": {
+          "token": "borderRadius.control",
+          "tolerance": 0.5
+        },
+        "borderBottomRightRadius": {
+          "token": "borderRadius.control",
+          "tolerance": 0.5
+        },
+        "fontSize": {
+          "token": "segmented.text.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "segmented.text.fontWeight",
+          "tolerance": 0
+        },
+        "backgroundColor": {
+          "value": "transparent",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "segmented.item.color",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".segmented button:hover",
+      "name": "Segmented · hover",
+      "properties": {
+        "backgroundColor": {
+          "token": "segmented.item.hover.bg",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".segmented button[aria-pressed=\"true\"]",
+      "name": "Segmented · selected",
+      "properties": {
+        "backgroundColor": {
+          "token": "segmented.item.selected.bg",
+          "tolerance": 1
+        },
+        "color": {
+          "token": "segmented.item.selected.color",
+          "tolerance": 1
+        }
+      }
+    },
+    {
+      "selector": ".ts-display-d1",
+      "name": "Typography · display d1",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.display.d1.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.display.d1.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.display.d1.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.display.d1.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.display.d1.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-display-d2",
+      "name": "Typography · display d2",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.display.d2.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.display.d2.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.display.d2.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.display.d2.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.display.d2.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-display-d3",
+      "name": "Typography · display d3",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.display.d3.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.display.d3.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.display.d3.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.display.d3.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.display.d3.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-title-t1",
+      "name": "Typography · title t1",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.title.t1.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.title.t1.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.title.t1.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.title.t1.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.title.t1.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-title-t2",
+      "name": "Typography · title t2",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.title.t2.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.title.t2.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.title.t2.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.title.t2.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.title.t2.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-title-t3",
+      "name": "Typography · title t3",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.title.t3.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.title.t3.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.title.t3.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.title.t3.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.title.t3.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-title-t4",
+      "name": "Typography · title t4",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.title.t4.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.title.t4.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.title.t4.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.title.t4.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.title.t4.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-title-t5",
+      "name": "Typography · title t5",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.title.t5.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.title.t5.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.title.t5.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.title.t5.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.title.t5.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-body-lg-regular",
+      "name": "Typography · body lg regular",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.body.lg.regular.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.body.lg.regular.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.body.lg.regular.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.body.lg.regular.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.body.lg.regular.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-body-lg-strong",
+      "name": "Typography · body lg strong",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.body.lg.strong.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.body.lg.strong.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.body.lg.strong.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.body.lg.strong.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.body.lg.strong.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-body-md-regular",
+      "name": "Typography · body md regular",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.body.md.regular.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.body.md.regular.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.body.md.regular.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.body.md.regular.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.body.md.regular.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-body-md-strong",
+      "name": "Typography · body md strong",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.body.md.strong.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.body.md.strong.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.body.md.strong.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.body.md.strong.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.body.md.strong.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-body-sm-regular",
+      "name": "Typography · body sm regular",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.body.sm.regular.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.body.sm.regular.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.body.sm.regular.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.body.sm.regular.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.body.sm.regular.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-body-sm-strong",
+      "name": "Typography · body sm strong",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.body.sm.strong.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.body.sm.strong.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.body.sm.strong.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.body.sm.strong.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.body.sm.strong.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-label-md",
+      "name": "Typography · label md",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.label.md.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.label.md.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.label.md.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.label.md.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.label.md.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-label-sm",
+      "name": "Typography · label sm",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.label.sm.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.label.sm.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.label.sm.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.label.sm.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.label.sm.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-label-overline",
+      "name": "Typography · label overline",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.label.overline.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.label.overline.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.label.overline.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.label.overline.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.label.overline.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-caption-regular",
+      "name": "Typography · caption regular",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.caption.regular.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.caption.regular.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.caption.regular.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.caption.regular.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.caption.regular.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-numeric-balance",
+      "name": "Typography · numeric balance",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.numeric.balance.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.numeric.balance.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.numeric.balance.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.numeric.balance.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.numeric.balance.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-numeric-amount-xl",
+      "name": "Typography · numeric amountXl",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.numeric.amountXl.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.numeric.amountXl.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.numeric.amountXl.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.numeric.amountXl.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.numeric.amountXl.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-numeric-amount-lg",
+      "name": "Typography · numeric amountLg",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.numeric.amountLg.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.numeric.amountLg.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.numeric.amountLg.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.numeric.amountLg.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.numeric.amountLg.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-numeric-amount-md",
+      "name": "Typography · numeric amountMd",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.numeric.amountMd.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.numeric.amountMd.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.numeric.amountMd.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.numeric.amountMd.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.numeric.amountMd.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    },
+    {
+      "selector": ".ts-numeric-amount-sm",
+      "name": "Typography · numeric amountSm",
+      "properties": {
+        "fontFamily": {
+          "token": "typography.numeric.amountSm.fontFamily",
+          "tolerance": 0
+        },
+        "fontSize": {
+          "token": "typography.numeric.amountSm.fontSize",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "typography.numeric.amountSm.fontWeight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "typography.numeric.amountSm.lineHeight",
+          "tolerance": 0.5
+        },
+        "letterSpacing": {
+          "token": "typography.numeric.amountSm.letterSpacing",
+          "tolerance": 0.1
+        }
+      }
+    }
+  ],
+  "candidatesSelector": "button,[role=\"button\"],input:not([type=\"hidden\"]),select,textarea,a.btn,.nav-item,.tile"
+}

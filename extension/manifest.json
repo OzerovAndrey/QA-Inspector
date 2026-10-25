@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "QA Inspector",
+  "version": "0.7.0",
+  "description": "Inspect CSS on any page. Optionally compare against your design token JSON.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "clipboardWrite",
+    "sidePanel"
+  ],
+  "action": {
+    "default_title": "Відкрити QA Inspector"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "optional_host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "host_permissions": [
+    "file:///*"
+  ]
+}

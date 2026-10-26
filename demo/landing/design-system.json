@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "name": "Luma · Fictional Design System",
+  "defaultBrand": "luma",
+  "defaultTheme": "light",
+  "scope": {
+    "origin": "*",
+    "pathPrefix": "/"
+  },
+  "source": {
+    "note": "Fictional designer-authored specification. Independent of measured page values. Only data-qa selectors belong to this fixture."
+  },
+  "candidatesSelector": "[data-qa]",
+  "contexts": {
+    "luma/light": {
+      "type.heading.size": "56px",
+      "type.heading.weight": 700,
+      "type.heading.line": "60px",
+      "type.body.size": "16px",
+      "type.body.line": "26px",
+      "button.height": "44px",
+      "button.paddingLeft": "20px",
+      "button.radius": "10px",
+      "card.paddingTop": "28px",
+      "card.radius": "20px",
+      "badge.weight": 700,
+      "input.height": "46px",
+      "input.radius": "8px",
+      "stack.gap": "16px",
+      "color.ink": "#253c34",
+      "color.brand": "#315c43",
+      "color.onBrand": "#ffffff",
+      "color.surface": "#ffffff"
+    },
+    "luma/dark": {
+      "type.heading.size": "56px",
+      "type.heading.weight": 700,
+      "type.heading.line": "60px",
+      "type.body.size": "16px",
+      "type.body.line": "26px",
+      "button.height": "44px",
+      "button.paddingLeft": "20px",
+      "button.radius": "10px",
+      "card.paddingTop": "28px",
+      "card.radius": "20px",
+      "badge.weight": 700,
+      "input.height": "46px",
+      "input.radius": "8px",
+      "stack.gap": "16px",
+      "color.ink": "#e5eee6",
+      "color.brand": "#b8d78e",
+      "color.onBrand": "#17251e",
+      "color.surface": "#22352a"
+    }
+  },
+  "rules": [
+    {
+      "selector": "[data-qa=\"heading\"]",
+      "name": "Heading",
+      "properties": {
+        "fontSize": {
+          "token": "type.heading.size",
+          "tolerance": 0.5
+        },
+        "fontWeight": {
+          "token": "type.heading.weight",
+          "tolerance": 0
+        },
+        "lineHeight": {
+          "token": "type.heading.line",
+          "tolerance": 0.5
+        },
+        "color": {
+          "token": "color.ink",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"body\"]",
+      "name": "Body",
+      "properties": {
+        "fontSize": {
+          "token": "type.body.size",
+          "tolerance": 0.5
+        },
+        "lineHeight": {
+          "token": "type.body.line",
+          "tolerance": 0.5
+        },
+        "color": {
+          "token": "color.ink",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"primary\"]",
+      "name": "Primary",
+      "properties": {
+        "height": {
+          "token": "button.height",
+          "tolerance": 0.5
+        },
+        "paddingLeft": {
+          "token": "button.paddingLeft",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "button.radius",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "color.brand",
+          "tolerance": 0
+        },
+        "color": {
+          "token": "color.onBrand",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"secondary\"]",
+      "name": "Secondary",
+      "properties": {
+        "height": {
+          "token": "button.height",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "button.radius",
+          "tolerance": 0.5
+        },
+        "color": {
+          "token": "color.ink",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"card\"]",
+      "name": "Card",
+      "properties": {
+        "paddingTop": {
+          "token": "card.paddingTop",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "card.radius",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "color.surface",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"badge\"]",
+      "name": "Badge",
+      "properties": {
+        "fontWeight": {
+          "token": "badge.weight",
+          "tolerance": 0
+        },
+        "color": {
+          "token": "color.ink",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"input\"]",
+      "name": "Input",
+      "properties": {
+        "height": {
+          "token": "input.height",
+          "tolerance": 0.5
+        },
+        "borderTopLeftRadius": {
+          "token": "input.radius",
+          "tolerance": 0.5
+        },
+        "backgroundColor": {
+          "token": "color.surface",
+          "tolerance": 0
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"stack\"]",
+      "name": "Stack",
+      "properties": {
+        "gap": {
+          "token": "stack.gap",
+          "tolerance": 0.5
+        }
+      }
+    },
+    {
+      "selector": "[data-qa=\"gradient\"]",
+      "name": "Gradient",
+      "properties": {
+        "backgroundColor": {
+          "token": "color.brand",
+          "tolerance": 0
+        }
+      }
+    }
+  ]
+}

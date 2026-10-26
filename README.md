@@ -137,3 +137,7 @@ Browser smoke перевіряє незалежні вкладки, збиран
 Код: [OzerovAndrey/QA-Inspector](https://github.com/OzerovAndrey/QA-Inspector).
 
 [Підключення iPhone](docs/MOBILE.md) · [Контекст для Codex](docs/PROJECT_CONTEXT.md). GitHub автоматично запускає базові тести після push і в pull request.
+
+## Контрольний лендінг Luma
+
+[Сторінка](demo/landing/index.html) · [Еталон JSON](demo/landing/design-system.json) · [Сценарій та очікувані конфлікти](demo/landing/README.md). Вісім типів компонентів у двох темах, 8 навмисних помилок і чистий режим. Автоматична перевірка: `npm run test:landing`.

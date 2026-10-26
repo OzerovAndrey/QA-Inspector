@@ -11,3 +11,6 @@ coverage/
 /atlas-site-report.md
 /atlas-live.png
 /preview-*.png
+
+/presentation/build/
+/presentation/assets/

@@ -41,7 +41,7 @@ async function cacheReference(){if(!boundPage?.url)return;const stored=await chr
 async function activeTab(){const [tab]=await chrome.tabs.query({active:true,currentWindow:true});if(!tab?.id)throw Error('Не знайдено активної вкладки.');boundPage={tabId:tab.id,url:tab.url||await tabUrl(tab)};await chrome.storage.local.set({inspectorPage:boundPage});return tab;}
 async function tabUrl(tab){return tab.url||(await chrome.scripting.executeScript({target:{tabId:tab.id},func:()=>location.href}))[0]?.result;}
 function referenceUI(){
- $('loaded-system').hidden=!system;$('import').hidden=Boolean(system);$('reference-hint').textContent=comparing?'Еталон завантажено. Перевіряйте відповідність дизайну.':'Порівняйте сайт із дизайном за JSON або ZIP.';
+ $('loaded-system').hidden=!system;$('import').hidden=Boolean(system);$('reference-hint').textContent=comparing?'Еталон завантажено. Перевіряйте відповідність дизайну.':'Порівняйте сайт із дизайном за JSON.';
  if(!system)return;$('system-name').textContent=system.name;$('compare-enabled').checked=comparing;$('theme-label').hidden=!comparing;
  $('system-mode').textContent=!comparing?'JSON збережено, але зараз ви лише збираєте фактичні дані.':system.mode==='tokens'?'Перевірка входження значень до токенів. Це не перевірка правильної ролі компонента.':'Порівняння з конкретними правилами компонентів із JSON.';
  if(system.importInfo?.unsupported)$('system-mode').textContent+=` Непідтримуваних токенів пропущено: ${system.importInfo.unsupported}.`;

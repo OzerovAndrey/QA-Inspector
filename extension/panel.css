@@ -35,3 +35,5 @@ body{background:#edf0f6}header{background:#192640;color:#fff;border:0;border-bot
 .property-row:hover,.property-row:focus-visible{background:#f1f5fa;outline:none;box-shadow:inset 2px 0 #7a99ba}.property-row{transition:background .12s}
 
 .property-group>summary>.property-icon{vertical-align:-3px;margin-right:7px;color:#666}
+/* Reference state: a quiet blue surface and dashed empty drop area. */
+.reference-card{background:#f2f7fd;border:1px dashed #b9cee7}.reference-card:has(#loaded-system:not([hidden])){border-style:solid;border-color:#b9cee7}.reference-card .compare-toggle{background:#e6eef9}.reference-card .upload-reference{background:#ffffffa6;border-color:#c6d5e7}

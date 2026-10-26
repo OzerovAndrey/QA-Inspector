@@ -37,3 +37,4 @@ body{background:#edf0f6}header{background:#192640;color:#fff;border:0;border-bot
 .property-group>summary>.property-icon{vertical-align:-3px;margin-right:7px;color:#666}
 /* Reference state: a quiet blue surface and dashed empty drop area. */
 .reference-card{background:#f2f7fd;border:1px dashed #b9cee7}.reference-card:has(#loaded-system:not([hidden])){border-style:solid;border-color:#b9cee7}.reference-card .compare-toggle{background:#e6eef9}.reference-card .upload-reference{background:#ffffffa6;border-color:#c6d5e7}
+#context-choice{appearance:none;-webkit-appearance:none;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:12px 12px;background-position:right 8px center}

@@ -53,7 +53,17 @@ export async function scanDocument(system,options={}){
   }
   return {url:location.href,rootFontSize:getComputedStyle(document.documentElement).fontSize,selection:options.selector||null,context,timestamp:new Date().toISOString(),elements,uncovered,hidden,truncated};
 }
-export function revealElement(selector){
-  const el=document.querySelector(selector);if(!el)return false;el.scrollIntoView({behavior:'instant',block:'center',inline:'center'});
-  const r=el.getBoundingClientRect(),overlay=document.createElement('div');overlay.style.cssText=`position:fixed;pointer-events:none;z-index:2147483647;border:3px solid #ef6944;border-radius:6px;background:#ef694419;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;box-sizing:border-box`;document.documentElement.append(overlay);setTimeout(()=>overlay.remove(),1800);return true;
+export function revealElement(selector,description='Елемент із результатів перевірки'){
+  globalThis.__qaRevealCleanup?.();
+  const el=document.querySelector(selector);if(!el)return false;
+  el.scrollIntoView({behavior:'instant',block:'center',inline:'center'});
+  const overlay=document.createElement('div'),tip=document.createElement('div');
+  overlay.dataset.qaConflict='true';
+  overlay.style.cssText='position:fixed;pointer-events:none;z-index:2147483646;border:3px solid #e45145;border-radius:5px;background:#e4514519;box-sizing:border-box';
+  tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;background:#952e2a;color:white;border-radius:7px;padding:9px 12px;font:12px/1.5 system-ui;max-width:min(360px,calc(100vw - 16px));overflow-wrap:anywhere;box-shadow:0 4px 18px #0003';tip.textContent=description;
+  document.documentElement.append(overlay,tip);
+  const update=()=>{const r=el.getBoundingClientRect();Object.assign(overlay.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});Object.assign(tip.style,{left:Math.max(8,Math.min(r.left,innerWidth-tip.offsetWidth-8))+'px',top:Math.max(8,Math.min(r.bottom+8,innerHeight-tip.offsetHeight-8))+'px'});};
+  const cleanup=()=>{clearTimeout(timer);overlay.remove();tip.remove();window.removeEventListener('scroll',update,true);window.removeEventListener('resize',update);window.removeEventListener('keydown',key,true);delete globalThis.__qaRevealCleanup;};
+  const key=e=>{if(e.key==='Escape')cleanup();};const timer=setTimeout(cleanup,6000);
+  window.addEventListener('scroll',update,true);window.addEventListener('resize',update);window.addEventListener('keydown',key,true);globalThis.__qaRevealCleanup=cleanup;update();return true;
 }

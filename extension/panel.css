@@ -27,3 +27,5 @@ body{background:#edf0f6}header{background:#192640;color:#fff;border:0;border-bot
 .color-swatch{display:inline-block;vertical-align:-4px;width:18px;height:18px;margin-right:7px;border:1px solid #0003;border-radius:3px;background:linear-gradient(var(--swatch-color),var(--swatch-color)),repeating-conic-gradient(#ddd 0% 25%,#fff 0% 50%) 0/8px 8px}
 /* Link-like actions stay recognisable within neutral tool chrome. */
 .text-button{color:#1769c2}.text-button:hover:not(:disabled){color:#10549c;text-decoration:underline;background:transparent}.text-button:disabled{color:#1769c2}
+
+.property-label{display:inline-flex;align-items:center;gap:6px}.property-icon{width:14px;height:14px;flex:none;color:#777}.conflict-select>.property-label{display:flex}

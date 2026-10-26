@@ -1,6 +1,7 @@
 // Self-contained hover inspector. Visual overlays never alter the site's component CSS.
 export function startPicker(){
  globalThis.__qaPickerCleanup?.();
+ const cursorStyle=document.createElement('style');cursorStyle.textContent='html, html * { cursor: crosshair !important; }';document.documentElement.append(cursorStyle);
  const box=document.createElement('div');box.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;border:2px solid #4355d9;background:#4355d915;display:none;box-sizing:border-box';
  const tip=document.createElement('div');tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;max-width:330px;background:#202c3b;color:white;border-radius:9px;padding:10px 12px;font:12px/1.6 system-ui;left:12px;top:12px;box-shadow:0 6px 24px #0003;white-space:pre-line';tip.textContent='Наведіть на компонент\nКлік — зафіксувати · ↑ — батьківський блок · Esc — вийти';document.documentElement.append(box,tip);
  let current=null,timer=null,lastSelector='',lastX=12,lastY=12;
@@ -14,7 +15,7 @@ export function startPicker(){
   const selector=path(el);if(send&&selector!==lastSelector){lastSelector=selector;chrome.runtime.sendMessage({type:'QA_HOVER',selector,url:location.href}).catch(()=>{});}
  }
  function move(e){lastX=e.clientX;lastY=e.clientY;const el=target(e);if(el!==current){clearTimeout(timer);show(el,false);timer=setTimeout(()=>show(el),180);}else show(el,false);}
- function cleanup(){clearTimeout(timer);box.remove();tip.remove();window.removeEventListener('pointermove',move,true);window.removeEventListener('click',pick,true);window.removeEventListener('keydown',key,true);window.removeEventListener('scroll',scroll,true);delete globalThis.__qaPickerCleanup;}
+ function cleanup(){clearTimeout(timer);cursorStyle.remove();box.remove();tip.remove();window.removeEventListener('pointermove',move,true);window.removeEventListener('click',pick,true);window.removeEventListener('keydown',key,true);window.removeEventListener('scroll',scroll,true);delete globalThis.__qaPickerCleanup;}
  function scroll(){if(current)show(current,false);}
  function key(e){if(e.key==='Escape'){cleanup();chrome.runtime.sendMessage({type:'QA_PICK_CANCEL'}).catch(()=>{});}else if(current&&['ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();clearTimeout(timer);show(e.key==='ArrowUp'?current.parentElement:current.firstElementChild||current);}}
  function pick(e){e.preventDefault();e.stopImmediatePropagation();const el=e.altKey?target(e):current||target(e);if(!el)return;const selector=path(el);cleanup();chrome.runtime.sendMessage({type:'QA_PICK',selector,url:location.href}).catch(()=>{});}

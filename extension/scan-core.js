@@ -31,7 +31,7 @@ export function evaluateScan(snapshot,system){
       const match=comparable.find(item=>equal(normalized(item.value)));
       const status=a===null||!comparable.length||element.unsupported.includes(property)?'Not comparable':match?'Pass':rule.tokens&&comparable.length<allowed.length?'Not comparable':'Fail';
       const values=[...new Set(allowed.map(x=>x.value))];
-      return {property,actual,expected:match?match.value:values.slice(0,8).join(' · ')+(values.length>8?` … (+${values.length-8})`:''),token:match?.token||allowed.map(x=>x.token||'Фіксоване правило').slice(0,8).join(', '),tolerance:rule.tolerance,status,basis:system.mode==='tokens'?'token-set':'component-rule'};
+      return {property,actual,allowedValues:allowed,expected:match?match.value:values.slice(0,8).join(' · ')+(values.length>8?` … (+${values.length-8})`:''),token:match?.token||allowed.map(x=>x.token||'Фіксоване правило').slice(0,8).join(', '),tolerance:rule.tolerance,status,basis:system.mode==='tokens'?'token-set':'component-rule'};
     });
     return {...element,rows,status:rows.some(r=>r.status==='Fail')?'Fail':rows.some(r=>r.status==='Not comparable')?'Not comparable':'Pass'};
   });

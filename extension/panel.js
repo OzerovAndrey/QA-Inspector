@@ -1,3 +1,4 @@
+import {conflicts,conflictCode,conflictsReport} from './conflict-report.js';
 import {validateSystem,evaluateScan,scanReport,extractionSystem} from './scan-core.js';
 import {scanDocument,revealElement} from './scanner.js';
 import {startPicker,stopPicker} from './picker.js';
@@ -63,22 +64,32 @@ function render(mode){const state=states[mode];if(mode==='site'&&!state.job)$('s
  field(mode,'context').textContent=`${raw?'Властивості без еталона':'Порівняння з '+result.systemName} · ${result.url} · ${new Date(result.timestamp).toLocaleTimeString('uk-UA')}`;
  if(raw){const data=inventory(result);field(mode,'summary').append(stats([[result.elements.length,'Елементів'],[data.fonts.length,'Шрифтів'],[data.colors.length,'Кольорів']]),node('p',`${result.counts.readings} властивостей. Відповідність дизайну не оцінювалася.`,'hint'));if(mode!=='component')field(mode,'summary').append(renderInventory(data));}
  else field(mode,'summary').append(stats([[result.counts.pass,result.mode==='tokens'?'У токенах':'Відповідають','pass'],[result.counts.fail,'Відхилень','fail'],[result.counts.nc,'Не порівняно','nc']]),node('p',`${result.counts.checks} перевірок · ${result.uncovered.length} без правил`,'hint'));
- if(!raw&&mode!=='site'){
- const conflicts=result.elements.filter(el=>el.rows.some(row=>row.status==='Fail'));let index=-1;
- const failStat=field(mode,'summary').querySelector('.stat.fail');
- if(conflicts.length&&failStat){const trigger=node('button',undefined,'stat fail conflict-stat');trigger.append(...failStat.childNodes);trigger.title='Показати відхилення на сторінці';trigger.setAttribute('aria-label','Показати відхилення на сторінці');failStat.replaceWith(trigger);
- const navigation=node('div',undefined,'conflict-navigation'),previous=node('button','←','secondary'),position=node('span','Показати конфлікти на сторінці','hint'),next=node('button','Далі →','secondary');previous.setAttribute('aria-label','Попередній конфлікт');next.setAttribute('aria-label','Наступний конфлікт');
- const select=step=>{index=(index+step+conflicts.length)%conflicts.length;const element=conflicts[index];position.textContent=`Елемент ${index+1} із ${conflicts.length}`;showElement(mode,element.selector,element.rows.find(row=>row.status==='Fail'));};trigger.onclick=()=>select(1);next.onclick=()=>select(1);previous.onclick=()=>{if(index<0)index=0;select(-1);};navigation.append(previous,position,next);field(mode,'summary').append(navigation);}
- }
  if(result.truncated)field(mode,'summary').append(node('p','Досягнуто ліміту 1500 елементів. Дані сторінки неповні.','site-error'));
  const query=mode==='page'?$('page-search').value.trim().toLowerCase():'';
+ if(!raw){renderConflicts(mode,result,query);return;}
  const elements=result.elements.filter(el=>(raw||!state.onlyDiff||el.status!=='Pass')&&(!query||(el.name+' '+el.label).toLowerCase().includes(query)));
  for(const el of elements.slice(0,state.limit)){const card=node('details',undefined,'component-result');card.open=mode==='component'||(!raw&&el.status!=='Pass');const heading=node('summary'),identity=node('span',undefined,'element-identity');identity.append(node('b',el.name));if(el.label&&el.label!==el.name)identity.append(node('small',el.label.slice(0,90)));heading.append(identity);if(!raw)heading.append(node('span',el.status==='Pass'?'Відповідає':el.status==='Fail'?'Відхилення':'Не порівняно','badge '+(el.status==='Not comparable'?'nc':el.status)));card.append(heading);if(mode!=='site'){const reveal=node('button','Показати на сторінці ↗','text-button');reveal.onclick=()=>showElement(mode,el.selector);card.append(reveal);}const rows=raw||!state.onlyDiff?el:{...el,rows:el.rows.filter(row=>row.status!=='Pass')};card.append(renderRows(rows,raw,mode));field(mode,'results').append(card);}
  if(!elements.length)field(mode,'results').append(node('div',query?'Нічого не знайдено.':raw?'Не знайдено видимих елементів.':'Відхилень серед перевірених правил немає. Непокриті елементи не вважаються Pass.','empty'));
  if(elements.length>state.limit){const more=node('button',`Показати ще · залишилось ${elements.length-state.limit}`,'secondary full');more.onclick=()=>{state.limit+=60;render(mode);};field(mode,'results').append(more);}
  if(!raw&&result.uncovered.length){const uncovered=node('details',undefined,'inventory');uncovered.append(node('summary',`Без правил · ${result.uncovered.length}`));for(const el of result.uncovered.slice(0,100))uncovered.append(node('p',el.label,'source'));field(mode,'results').append(uncovered);}
 }
-async function showElement(mode,selector,row){try{const state=states[mode];if(!state.tabId)throw Error('Відкрийте сторінку та повторіть скан для підсвічування.');const tab=await chrome.tabs.get(state.tabId);if(tab.url&&tab.url!==state.result.url)throw Error('Сторінка змінилася. Повторіть скан.');const response=await chrome.scripting.executeScript({target:{tabId:state.tabId},func:revealElement,args:[selector,row?`${labels[row.property]||row.property}: ${row.actual} → ${row.expected}`:'Елемент із результатів перевірки']});if(!response[0]?.result)throw Error('Елемент уже змінився. Повторіть скан.');}catch(error){notice(mode,error.message,true);}}
+function renderConflicts(mode,result,query){
+ field(mode,'filter').hidden=true;
+ const all=conflicts(result),items=all.filter(({element,row})=>!query||(element.name+' '+element.label+' '+(labels[row.property]||row.property)).toLowerCase().includes(query));
+ const toolbar=node('div',undefined,'conflict-toolbar');toolbar.append(node('p',`${all.length} конфліктів · натисніть, щоб побачити на сторінці`,'hint'));
+ const file=node('button','Файл для фронтенду ↓','text-button');file.disabled=!all.length;file.onclick=()=>saveText(conflictsReport(result),`qa-inspector-${mode}-conflicts.md`);toolbar.append(file);field(mode,'results').append(toolbar);
+ for(const {element,row}of items.slice(0,states[mode].limit)){
+  const card=node('div',undefined,'conflict-item'),jump=node('button',undefined,'conflict-select');
+  jump.append(node('strong',(labels[row.property]||row.property)),node('span',element.label||element.name,'conflict-element'),node('span',`${row.actual} → ${row.expected}`,'conflict-values'));
+  jump.onclick=()=>{field(mode,'results').querySelectorAll('.conflict-item').forEach(el=>el.classList.remove('selected'));card.classList.add('selected');showElement(mode,element.selector,row);};
+  const copy=node('button','Скопіювати код','text-button conflict-copy');copy.onclick=async()=>{const text=conflictCode(result,element,row);try{await navigator.clipboard.writeText(text);copy.textContent='Скопійовано ✓';}catch{field(mode,'report').hidden=false;field(mode,'report').value=text;field(mode,'report').select();notice(mode,'Натисніть Ctrl/Cmd+C, щоб скопіювати код.');}};
+  card.append(jump,copy);field(mode,'results').append(card);
+ }
+ if(!items.length)field(mode,'results').append(node('div',query?'Нічого не знайдено.':`Конфліктів не знайдено. Не порівняно: ${result.counts.nc}.`,'empty'));
+ if(items.length>states[mode].limit){const more=node('button','Показати ще','secondary full');more.onclick=()=>{states[mode].limit+=60;render(mode);};field(mode,'results').append(more);}
+}
+function saveText(text,filename){const url=URL.createObjectURL(new Blob([text],{type:'text/markdown;charset=utf-8'})),link=node('a');link.href=url;link.download=filename;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function showElement(mode,selector,row){try{const state=states[mode];const result=mode==='site'?state.detail:state.result;if(mode==='site'){const tabs=await chrome.tabs.query({});state.tabId=tabs.find(tab=>tab.url===result.url)?.id;}if(!state.tabId)throw Error('Відкрийте сторінку та повторіть скан для підсвічування.');const tab=await chrome.tabs.get(state.tabId);if(tab.url&&tab.url!==result.url)throw Error('Сторінка змінилася. Повторіть скан.');const response=await chrome.scripting.executeScript({target:{tabId:state.tabId},func:revealElement,args:[selector,row?`${labels[row.property]||row.property}: ${row.actual} → ${row.expected}`:'Елемент із результатів перевірки']});if(!response[0]?.result)throw Error('Елемент уже змінився. Повторіть скан.');}catch(error){notice(mode,error.message,true);}}
 function reportData(mode){return mode==='site'&&!states.site.detail?states.site.job:mode==='site'?states.site.detail:states[mode].result;}
 function markdown(mode){const value=reportData(mode);return mode==='site'&&!states.site.detail?siteReport(value):scanReport(value);}
 async function copyReport(mode){try{await navigator.clipboard.writeText(markdown(mode));notice(mode,'Звіт скопійовано.');}catch{field(mode,'report').hidden=false;field(mode,'report').value=markdown(mode);field(mode,'report').select();notice(mode,'Натисніть Ctrl/Cmd+C, щоб скопіювати звіт.');}}

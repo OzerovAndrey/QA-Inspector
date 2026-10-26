@@ -29,3 +29,5 @@ body{background:#edf0f6}header{background:#192640;color:#fff;border:0;border-bot
 .text-button{color:#1769c2}.text-button:hover:not(:disabled){color:#10549c;text-decoration:underline;background:transparent}.text-button:disabled{color:#1769c2}
 
 .property-label{display:inline-flex;align-items:center;gap:6px}.property-icon{width:14px;height:14px;flex:none;color:#777}.conflict-select>.property-label{display:flex}
+
+.conflict-comparison{width:100%;border-collapse:collapse;margin:10px 0 3px;table-layout:fixed;text-align:left}.conflict-comparison th{font:500 10px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#777;background:#f3f3f3;padding:6px 8px;border:1px solid #e3e3e3}.conflict-comparison td{font:11px/1.6 ui-monospace,monospace;padding:8px;vertical-align:top;overflow-wrap:anywhere;border:1px solid #e3e3e3;color:#a4463f}.conflict-comparison td:last-child{color:#316548;background:#f7faf7}.conflict-select .conflict-comparison{cursor:pointer}

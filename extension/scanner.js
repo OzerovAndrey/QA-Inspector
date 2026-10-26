@@ -60,10 +60,11 @@ export function revealElement(selector,description='Елемент із резу
   const overlay=document.createElement('div'),tip=document.createElement('div');
   overlay.dataset.qaConflict='true';
   overlay.style.cssText='position:fixed;pointer-events:none;z-index:2147483646;border:3px solid #e45145;border-radius:5px;background:#e4514519;box-sizing:border-box';
-  tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;background:#952e2a;color:white;border-radius:7px;padding:9px 12px;font:12px/1.5 system-ui;max-width:min(360px,calc(100vw - 16px));overflow-wrap:anywhere;box-shadow:0 4px 18px #0003';tip.textContent=description;
+  tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;background:#952e2a;color:white;border-radius:7px;padding:9px 12px;font:12px/1.5 system-ui;max-width:min(360px,calc(100vw - 16px));overflow-wrap:anywhere;box-shadow:0 4px 18px #0003';tip.style.whiteSpace='pre-line';tip.textContent=description;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const pulse=reduced?null:overlay.animate([{opacity:1},{opacity:.3},{opacity:1}],{duration:1200,iterations:5});
   document.documentElement.append(overlay,tip);
   const update=()=>{const r=el.getBoundingClientRect();Object.assign(overlay.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});Object.assign(tip.style,{left:Math.max(8,Math.min(r.left,innerWidth-tip.offsetWidth-8))+'px',top:Math.max(8,Math.min(r.bottom+8,innerHeight-tip.offsetHeight-8))+'px'});};
-  const cleanup=()=>{clearTimeout(timer);overlay.remove();tip.remove();window.removeEventListener('scroll',update,true);window.removeEventListener('resize',update);window.removeEventListener('keydown',key,true);delete globalThis.__qaRevealCleanup;};
+  const cleanup=()=>{clearTimeout(timer);pulse?.cancel();overlay.remove();tip.remove();window.removeEventListener('scroll',update,true);window.removeEventListener('resize',update);window.removeEventListener('keydown',key,true);delete globalThis.__qaRevealCleanup;};
   const key=e=>{if(e.key==='Escape')cleanup();};const timer=setTimeout(cleanup,6000);
   window.addEventListener('scroll',update,true);window.addEventListener('resize',update);window.addEventListener('keydown',key,true);globalThis.__qaRevealCleanup=cleanup;update();return true;
 }

@@ -9,7 +9,8 @@
     "scripting",
     "storage",
     "clipboardWrite",
-    "sidePanel"
+    "sidePanel",
+    "tabs"
   ],
   "action": {
     "default_title": "Відкрити QA Inspector",

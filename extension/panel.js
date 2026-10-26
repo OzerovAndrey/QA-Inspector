@@ -1,3 +1,4 @@
+import './button-icons.js';
 import {conflicts,conflictCode,conflictsReport} from './conflict-report.js';
 import {validateSystem,evaluateScan,scanReport,extractionSystem} from './scan-core.js';
 import {scanDocument,revealElement} from './scanner.js';

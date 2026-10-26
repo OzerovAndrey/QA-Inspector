@@ -35,7 +35,7 @@ for(const mode of modes){$('tab-'+mode).onclick=()=>switchMode(mode);$('tab-'+mo
 async function activeTab(){const [tab]=await chrome.tabs.query({active:true,currentWindow:true});if(!tab?.id)throw Error('Не знайдено активної вкладки.');return tab;}
 async function tabUrl(tab){return tab.url||(await chrome.scripting.executeScript({target:{tabId:tab.id},func:()=>location.href}))[0]?.result;}
 function referenceUI(){
- $('loaded-system').hidden=!system;$('import').hidden=Boolean(system);$('reference-hint').textContent=comparing?'Еталон завантажено. Перевіряйте відповідність дизайну.':'Порівняйте сайт із дизайном за JSON-файлом.';
+ $('loaded-system').hidden=!system;$('import').hidden=Boolean(system);$('reference-hint').textContent=comparing?'Еталон завантажено. Перевіряйте відповідність дизайну.':'Порівняйте сайт із дизайном за JSON або ZIP.';
  if(!system)return;$('system-name').textContent=system.name;$('compare-enabled').checked=comparing;$('theme-label').hidden=!comparing;
  $('system-mode').textContent=!comparing?'JSON збережено, але зараз ви лише збираєте фактичні дані.':system.mode==='tokens'?'Перевірка входження значень до токенів. Це не перевірка правильної ролі компонента.':'Порівняння з конкретними правилами компонентів із JSON.';
  if(system.importInfo?.unsupported)$('system-mode').textContent+=` Непідтримуваних токенів пропущено: ${system.importInfo.unsupported}.`;

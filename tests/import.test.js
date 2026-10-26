@@ -11,3 +11,23 @@ test('oversize file rejected before parsing',async()=>{await assert.rejects(read
 
 test('source sets resolve aliases but are not exported as allowed tokens',()=>{const s=importTokens({$themes:[{name:'Light',selectedTokenSets:{core:'source',semantic:'enabled'}}],core:{raw:{value:'#ffffff',type:'color'}},semantic:{surface:{value:'{raw}',type:'color'}}});assert.equal(s.contexts['tokens/0'].surface,'#ffffff');assert.equal(s.contexts['tokens/0'].raw,undefined);});
 test('missing selected set is rejected rather than importing incomplete theme',()=>{assert.throws(()=>importTokens({$themes:[{name:'Light',selectedTokenSets:{core:'enabled',missing:'enabled'}}],core:{x:{value:'8',type:'spacing'}}}),/набору/);});
+
+// Use the shipped ZIP library: exercise actual archive decoding and cross-file aliases.
+test('Tokens Studio ZIP combines core and aliases and compares resolved values',async()=>{
+ const {readFileSync}=await import('node:fs');const {createRequire}=await import('node:module');
+ const mod={exports:{}};new Function('module','exports','require',readFileSync(new URL('../extension/vendor/jszip.min.js',import.meta.url),'utf8'))(mod,mod.exports,createRequire(import.meta.url));
+ const previous=globalThis.JSZip;globalThis.JSZip=mod.exports;
+ try{
+  const zip=new globalThis.JSZip();
+  zip.file('export/core.json',JSON.stringify({color:{blue:{value:'#336699',type:'color'}}}));
+  zip.file('export/alias.json',JSON.stringify({color:{action:{value:'{color.blue}',type:'color'}}}));
+  zip.file('export/components/button.json',JSON.stringify({button:{background:{value:'{color.action}',type:'color'}}}));
+  zip.file('export/$metadata.json',JSON.stringify({tokenSetOrder:['core','alias','components/button']}));
+  zip.file('export/$themes.json',JSON.stringify([{name:'Light',selectedTokenSets:{core:'source',alias:'source','components/button':'enabled'}}]));
+  const bytes=await zip.generateAsync({type:'nodebuffer'});const system=await readSystemFile({name:'tokens.zip',size:bytes.length,arrayBuffer:async()=>bytes});
+  assert.equal(system.contexts['tokens/0']['button.background'],'#336699');
+  assert.equal(system.contexts['tokens/0']['color.blue'],undefined);
+  const result=evaluateScan({context:'tokens/0',rootFontSize:'16px',url:'https://example.com',uncovered:[],elements:[{styles:{backgroundColor:'rgb(51, 102, 153)'},rules:{backgroundColor:{tokens:['button.background'],tolerance:0}},unsupported:[]}]},system);
+  assert.equal(result.counts.pass,1);assert.equal(result.elements[0].rows[0].token,'button.background');
+ }finally{if(previous===undefined)delete globalThis.JSZip;else globalThis.JSZip=previous;}
+});

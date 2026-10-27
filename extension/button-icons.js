@@ -18,7 +18,7 @@ const paths={
 function decorate(){for(const button of document.querySelectorAll('button')){
  const text=button.textContent.trim(),id=button.id;let kind='more';
  if(button.querySelector('svg'))continue;
- if(button.classList.contains('conflict-select'))kind='target';else if(id==='reset-all')kind='reset';else if(id==='reference-info'||button.classList.contains('info-button'))kind='info';
+ if(id==='source-figma')kind='page';else if(id==='figma-connect'||id==='figma-disconnect')kind='lock';else if(id==='figma-use')kind='check';else if(button.classList.contains('conflict-select'))kind='target';else if(id==='reset-all')kind='reset';else if(id==='reference-info'||button.classList.contains('info-button'))kind='info';
  else if(id==='import'||/Завантажити/.test(text))kind='upload';else if(/копію|Копію/.test(text))kind=/Скопійовано/.test(text)?'check':'copy';
  else if(/Зрозуміло/.test(text))kind='check';else if(/Замінити/.test(text))kind='replace';else if(/Прибрати|Зупинити|Завершити/.test(text))kind='close';
  else if(/Надати доступ/.test(text))kind='lock';else if(/Файл|JSON|\.md/.test(text))kind='download';else if(/Відкрити/.test(text))kind='open';

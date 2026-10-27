@@ -1,6 +1,6 @@
 {
   "name": "qa-inspector",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,8 @@
     "build:atlas": "node scripts/build-atlas-system.mjs",
     "test:browser": "node tests/browser-smoke.cjs",
     "test:extension": "node tests/extension-smoke.cjs",
-    "test:landing": "node tests/landing-smoke.cjs"
+    "test:landing": "node tests/landing-smoke.cjs",
+    "test:figma": "node tests/figma-smoke.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

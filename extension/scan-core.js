@@ -45,6 +45,7 @@ export function scanReport(result){
     return text;
   }
   let out=`# QA Inspector · ${safe(result.systemName)}\n\nURL: ${safe(result.url)}\nРежим: ${result.mode==='tokens'?'Значення з набору токенів (не перевірка ролі компонента)':'Правила компонентів'}\nКонтекст: ${safe(result.context)}\nЧас: ${safe(result.timestamp)}\nДжерело: ${safe(result.source?.url)}\nВерсія: ${safe(result.source?.revision)}\n\nПеревірено компонентів: ${result.elements.length}; правил: ${result.counts.checks}. Pass: ${result.counts.pass}; Fail: ${result.counts.fail}; Not comparable: ${result.counts.nc}. Без правил: ${result.uncovered.length}. Прихованих пропущено: ${result.hidden}. Ліміт досягнуто: ${result.truncated?'так':'ні'}.\n\n`;
+  if(result.figmaPage)out+=`## Покриття Figma\n\nЗіставлено ${result.figmaPage.matched} із ${result.figmaPage.total} шарів.\n`+result.figmaPage.unmatched.map(layer=>`- ${safe(layer.name)}: ${safe(layer.reason)}`).join('\n')+'\n\n';
   for(const el of result.elements){out+=`## ${safe(el.name)} — ${safe(el.label)} (${el.status})\n\nСелектор: ${safe(el.selector)}\n\n| Властивість | На сторінці | За системою | Токен | Допуск | Результат |\n|---|---|---|---|---|---|\n`+el.rows.map(r=>'| '+[r.property,r.actual,r.expected,r.token,r.tolerance,r.status].map(safe).join(' | ')+' |').join('\n')+'\n\n';}
   if(result.uncovered.length)out+='## Без правил\n\n'+result.uncovered.map(e=>`- ${safe(e.label)} · ${safe(e.selector)}`).join('\n');
   return out;

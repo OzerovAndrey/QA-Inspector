@@ -25,6 +25,56 @@ export function figmaProperties(node,parent){const p={},skipped=[];const add=(na
  const strokes=(node.strokes||[]).filter(f=>f.visible!==false);if(strokes.length===1&&strokes[0].type==='SOLID'&&node.strokeAlign==='INSIDE'){add('borderTopWidth',node.strokeWeight);p.borderTopColor=color(strokes[0]);}else if(strokes.length)skipped.push('Рамка з нееквівалентним CSS вирівнюванням');
  if(node.type==='TEXT'){const s=node.style||{};if(node.characterStyleOverrides?.some(Boolean))skipped.push('Змішана типографіка');else{if(s.fontFamily)p.fontFamily=s.fontFamily;if(Number.isFinite(s.fontWeight))p.fontWeight=String(s.fontWeight);add('fontSize',s.fontSize);add('letterSpacing',s.letterSpacing);if(s.lineHeightUnit!=='INTRINSIC_%')add('lineHeight',s.lineHeightPx);else skipped.push('Автоматична висота рядка');}}
  return{properties:p,skipped,sizing};}
-export function makeFigmaSystem(reference,node,checkViewport=false,parent){const {properties,skipped,sizing}=figmaProperties(node,parent);if(sizing.width!=='FIXED')checkViewport=false;if(checkViewport&&!Number.isFinite(node.absoluteBoundingBox?.width))throw Error('Цей шар не має ширини для перевірки брейкпоінта.');if(!Object.keys(properties).length)throw Error('У цьому шарі немає підтримуваних властивостей. Оберіть фрейм або текст.');const nodeLink=new URL(reference.url);nodeLink.searchParams.set('node-id',node.id.replaceAll(':','-'));return{schemaVersion:1,name:`Figma · ${reference.name} / ${node.name}`,scope:{origin:'*',pathPrefix:'/'},defaultBrand:'figma',defaultTheme:'default',contexts:{'figma/default':{}},rules:[{name:node.name||node.type,selector:'*',properties:Object.fromEntries(Object.entries(properties).map(([name,value])=>[name,{value,tolerance:['color','backgroundColor','borderTopColor','fontFamily','fontWeight'].includes(name)?0:.5}]))}],source:{type:'figma',url:nodeLink.href,fileKey:reference.fileKey,nodeId:node.id,fileVersion:reference.version,fetchedAt:reference.fetchedAt,width:node.absoluteBoundingBox?.width,checkViewport,skipped,sizing,note:'Лише вибраний шар ↔ вибраний DOM-елемент. Дочірні шари не зіставлено.'}};}
+export function makeFigmaSystem(reference,node,checkViewport=false,parent){const {properties,skipped,sizing}=figmaProperties(node,parent);if(sizing.width!=='FIXED')checkViewport=false;if(checkViewport&&!Number.isFinite(node.absoluteBoundingBox?.width))throw Error('Цей шар не має ширини для перевірки брейкпоінта.');if(!Object.keys(properties).length)throw Error('У цьому шарі немає підтримуваних властивостей. Оберіть фрейм або текст.');const nodeLink=new URL(reference.url);nodeLink.searchParams.set('node-id',node.id.replaceAll(':','-'));return{schemaVersion:1,name:`Figma · ${reference.name} / ${node.name}`,scope:{origin:'*',pathPrefix:'/'},defaultBrand:'figma',defaultTheme:'default',contexts:{'figma/default':{}},rules:[{name:node.name||node.type,selector:'*',properties:Object.fromEntries(Object.entries(properties).map(([name,value])=>[name,{value,tolerance:['color','backgroundColor','borderTopColor','fontFamily','fontWeight'].includes(name)?0:.5}]))}],source:{type:'figma',url:nodeLink.href,fileKey:reference.fileKey,nodeId:node.id,fileVersion:reference.version,fetchedAt:reference.fetchedAt,width:node.absoluteBoundingBox?.width,checkViewport,skipped,sizing,layers:listFigmaNodes(node).map(entry=>{const data=figmaProperties(entry.node,entry.parent||parent);return{id:entry.node.id,parentId:entry.parent?.id,name:entry.node.name,type:entry.node.type,text:entry.node.characters||'',properties:data.properties,skipped:data.skipped};}),note:'Сторінка — автоматичне зіставлення шарів макета. Компонент — ручна перевірка вибраної пари.'}};}
 // Serialized into the inspected page. No Figma token or API call enters the page.
 export function scanFigmaTarget(system,options={}){try{if(!options.selector)throw Error('Виберіть відповідний блок на сайті пікером.');if(options.expectedUrl&&location.href!==options.expectedUrl)throw Error('Сторінка змінилась. Виберіть блок заново.');const el=document.querySelector(options.selector);if(!el)throw Error('Елемент не знайдено.');if(system.source.checkViewport&&Math.abs(innerWidth-system.source.width)>1)throw Error(`Ширина браузера ${innerWidth}px, макета ${system.source.width}px. Встановіть потрібну ширину (з урахуванням бічної панелі) або вимкніть перевірку ширини.`);const css=getComputedStyle(el),rules=system.rules[0].properties,styles={},unsupported=[];for(const prop of Object.keys(rules)){styles[prop]=css[prop];if(prop==='fontFamily')styles[prop]=css.fontFamily.split(',')[0].trim();if(prop==='backgroundColor'&&css.backgroundImage!=='none')unsupported.push(prop);if(prop==='gap'&&(css.display!=='flex'&&css.display!=='inline-flex'&&css.display!=='grid'&&css.display!=='inline-grid'))unsupported.push(prop);}if(css.transform!=='none')unsupported.push('width','height');return{url:location.href,rootFontSize:getComputedStyle(document.documentElement).fontSize,context:'figma/default',timestamp:new Date().toISOString(),uncovered:[],elements:[{name:system.rules[0].name,label:el.localName+(el.id?'#'+el.id:'')+' · '+(el.textContent||'').trim().slice(0,80),selector:options.selector,styles,rules,unsupported}],figmaSource:system.source,viewportWidth:innerWidth};}catch(error){return{error:error.message};}}
+
+// Page matching uses identity/text/structure, never similarity of the values being tested.
+export function scanFigmaPage(system){try{
+ const source=system.source,layers=source.layers;
+ if(!layers?.length)throw Error('Оновіть еталон із Figma, щоб завантажити дочірні шари макета.');
+ if(source.checkViewport&&Math.abs(innerWidth-source.width)>1)throw Error(`Ширина браузера ${innerWidth}px, макета ${source.width}px. Встановіть ширину макета або вимкніть перевірку ширини.`);
+ const normalize=text=>String(text||'').replace(/\s+/g,' ').trim();
+ const all=[...document.querySelectorAll('body,body *')].filter(el=>!['SCRIPT','STYLE','NOSCRIPT'].includes(el.tagName)&&el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden');
+ if(all.length>15000)throw Error('Сторінка завелика для автоматичного зіставлення. Перевірте окремий компонент.');
+ const matches=new Map(),reasons=new Map(),used=new Set();
+ for(const layer of layers){
+  const explicit=all.filter(el=>el.getAttribute('data-figma-node-id')===layer.id);
+  let candidates=explicit;
+  if(!explicit.length&&layer.type==='TEXT'&&normalize(layer.text)){
+   const text=normalize(layer.text);
+   candidates=all.filter(el=>normalize(el.textContent)===text&&!Array.from(el.children).some(child=>normalize(child.textContent)===text));
+  }
+  if(candidates.length===1&&!used.has(candidates[0])){matches.set(layer.id,candidates[0]);used.add(candidates[0]);}
+  else reasons.set(layer.id,candidates.length?'Кілька можливих відповідностей':'Не знайдено однозначної відповідності');
+ }
+ const byId=new Map(layers.map(layer=>[layer.id,layer]));
+ const descends=(layer,id)=>{let parent=layer.parentId;const seen=new Set();while(parent&&!seen.has(parent)){if(parent===id)return true;seen.add(parent);parent=byId.get(parent)?.parentId;}return false;};
+ // A wrapper is inferred only from at least two distinct matched descendant branches.
+ for(const layer of [...layers].reverse()){
+  if(matches.has(layer.id)||layer.type==='TEXT')continue;
+  const anchors=layers.filter(child=>matches.has(child.id)&&descends(child,layer.id));
+  if(anchors.length<2)continue;
+  const elements=anchors.map(child=>matches.get(child.id));let common=elements[0].parentElement;
+  while(common&&!elements.every(el=>common.contains(el)))common=common.parentElement;
+  if(!common||common===document.documentElement||used.has(common))continue;
+  // Nested wrappers with the same anchors cannot be distinguished without identifiers.
+  const equivalent=layers.some(other=>other.id!==layer.id&&other.type!=='TEXT'&&!matches.has(other.id)&&anchors.every(child=>descends(child,other.id))&&layers.filter(child=>matches.has(child.id)&&descends(child,other.id)).length===anchors.length);
+  if(equivalent){reasons.set(layer.id,'Вкладені обгортки неможливо однозначно розрізнити');continue;}
+  matches.set(layer.id,common);used.add(common);
+ }
+ const selectorFor=el=>{if(el.id&&document.querySelectorAll('#'+CSS.escape(el.id)).length===1)return '#'+CSS.escape(el.id);const parts=[];while(el&&el!==document.documentElement){const siblings=el.parentElement?[...el.parentElement.children].filter(sibling=>sibling.localName===el.localName):[el];parts.unshift(el.localName+':nth-of-type('+(siblings.indexOf(el)+1)+')');el=el.parentElement;}return 'html > '+parts.join(' > ');};
+ const elements=[],unmatched=[];
+ for(const layer of layers){const el=matches.get(layer.id);if(!Object.keys(layer.properties).length){unmatched.push({id:layer.id,name:layer.name,reason:'Немає підтримуваних властивостей для порівняння'});continue;}if(!el){unmatched.push({id:layer.id,name:layer.name,reason:reasons.get(layer.id)||'Не знайдено однозначної відповідності'});continue;}
+  const css=getComputedStyle(el),styles={},unsupported=[],rules={};
+  for(const [prop,value] of Object.entries(layer.properties)){
+   rules[prop]={value,tolerance:['color','backgroundColor','borderTopColor','fontFamily','fontWeight'].includes(prop)?0:.5};
+   styles[prop]=prop==='fontFamily'?css.fontFamily.split(',')[0].trim():css[prop];
+   if(prop==='backgroundColor'&&css.backgroundImage!=='none')unsupported.push(prop);
+   if(prop==='gap'&&!['flex','inline-flex','grid','inline-grid'].includes(css.display))unsupported.push(prop);
+  }
+  if(css.transform!=='none')unsupported.push('width','height');
+  elements.push({name:layer.name,label:layer.name+' · '+normalize(el.textContent).slice(0,80),selector:selectorFor(el),styles,rules,unsupported,figmaNodeId:layer.id});
+ }
+ return{url:location.href,rootFontSize:getComputedStyle(document.documentElement).fontSize,context:'figma/default',timestamp:new Date().toISOString(),uncovered:[],elements,figmaSource:source,viewportWidth:innerWidth,figmaPage:{total:layers.length,matched:elements.length,unmatched}};
+ }catch(error){return{error:error.message};}}

@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {figmaSizing,validFigmaTokenFormat,parseFigmaLink,figmaProperties,makeFigmaSystem,listFigmaNodes,fetchFigmaReference} from '../extension/figma-reference.js';import {validateSystem,evaluateScan} from '../extension/scan-core.js';
+import test from 'node:test';import assert from 'node:assert/strict';import {figmaPageReady,refreshFigmaSystem,figmaSizing,validFigmaTokenFormat,parseFigmaLink,figmaProperties,makeFigmaSystem,listFigmaNodes,fetchFigmaReference} from '../extension/figma-reference.js';import {validateSystem,evaluateScan} from '../extension/scan-core.js';
 const frame={id:'1:2',name:'Desktop',type:'FRAME',absoluteBoundingBox:{width:1440,height:900},layoutMode:'VERTICAL',paddingTop:24,paddingRight:16,paddingBottom:24,paddingLeft:16,itemSpacing:12,cornerRadius:8,fills:[{type:'SOLID',color:{r:1,g:1,b:1}}]};
 const ref={url:'https://www.figma.com/design/ABC/Test?node-id=1-2',fileKey:'ABC',version:'v1',fetchedAt:'2026-10-27',name:'Test'};
 test('parses exact Figma selection and rejects non-Figma or whole-file links',()=>{assert.equal(parseFigmaLink(ref.url).nodeId,'1:2');for(const url of ['https://figma.com.evil.test/design/ABC?node-id=1-2','http://figma.com/design/ABC?node-id=1-2','https://figma.com/design/ABC','https://figma.com/design/ABC?node-id=../../x'])assert.throws(()=>parseFigmaLink(url));});
@@ -28,4 +28,16 @@ test('dynamic frame dimensions never become failures against different productio
  const styles=Object.fromEntries(Object.entries(rules).map(([key,val])=>[key,val.value]));styles.width='2081px';styles.height='1251px';
  const result=evaluateScan({context:'figma/default',elements:[{styles,rules,unsupported:[]}],uncovered:[],url:'https://example.com',rootFontSize:'16px'},system);
  assert.equal(result.counts.fail,0);assert.ok(!result.elements[0].rows.some(r=>['width','height'].includes(r.property)));
+});
+
+test('upgrades a legacy reference from its exact saved link without mutating it',async()=>{
+ const old=makeFigmaSystem(ref,{...frame,layoutSizingVertical:'HUG'},true);delete old.source.layers;const before=JSON.stringify(old);
+ assert.equal(figmaPageReady(old),false);
+ const next=await refreshFigmaSystem(old,'fixture-token',async url=>{assert.match(url,/ids=1%3A2/);return{ok:true,headers:{get:()=>null},text:async()=>JSON.stringify({name:'Updated',version:'v2',nodes:{'1:2':{document:{...frame,children:[{id:'1:3',type:'TEXT',name:'Title',characters:'Title',style:{fontSize:24}}]}}}})};});
+ assert.equal(figmaPageReady(next),true);assert.equal(next.source.layers.length,2);assert.equal(next.source.fileVersion,'v2');assert.equal(next.source.sizing.height,'HUG');assert.equal(next.rules[0].properties.height,undefined);assert.equal(next.source.checkViewport,true);assert.equal(JSON.stringify(old),before);
+});
+test('failed reference upgrades retain the cached baseline and propagate access status',async()=>{
+ const old=makeFigmaSystem(ref,frame);delete old.source.layers;const before=JSON.stringify(old);
+ await assert.rejects(refreshFigmaSystem(old,'fixture',async()=>({ok:false,status:403})),error=>error.status===403);
+ assert.equal(JSON.stringify(old),before);assert.equal(figmaPageReady(old),false);
 });

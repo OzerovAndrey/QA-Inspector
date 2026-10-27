@@ -78,3 +78,14 @@ export function scanFigmaPage(system){try{
  }
  return{url:location.href,rootFontSize:getComputedStyle(document.documentElement).fontSize,context:'figma/default',timestamp:new Date().toISOString(),uncovered:[],elements,figmaSource:source,viewportWidth:innerWidth,figmaPage:{total:layers.length,matched:elements.length,unmatched}};
  }catch(error){return{error:error.message};}}
+
+export function figmaPageReady(system){return system?.source?.type==='figma'&&Array.isArray(system.source.layers)&&system.source.layers.length>0;}
+export async function refreshFigmaSystem(system,token,fetcher=fetch){
+ if(system?.source?.type!=='figma')throw Error('Спочатку додайте еталон Figma.');
+ const reference=await fetchFigmaReference(system.source.url,token,fetcher);
+ if(reference.root.id!==system.source.nodeId)throw Error('Посилання не відповідає збереженому шару Figma. Додайте еталон заново.');
+ // Subtree requests omit the original parent. Preserve known dynamic axis constraints.
+ const root={...reference.root};
+ for(const [axis,field] of [['width','layoutSizingHorizontal'],['height','layoutSizingVertical']])if(!root[field]&&['HUG','FILL'].includes(system.source.sizing?.[axis]))root[field]=system.source.sizing[axis];
+ return makeFigmaSystem(reference,root,system.source.checkViewport);
+}

@@ -45,3 +45,5 @@ npm run test:extension — реальне MV3 розширення на лока
 ## Figma · v0.8
 
 Універсальний read-only імпорт за selection link. figma-reference.js: парсинг URL, прямий REST GET, вибір видимих шарів, перетворення підтримуваних властивостей, self-contained scanFigmaTarget. figma-ui.js: джерела JSON/Figma, token session connect/disconnect, frame picker. Перевіряється одна явна пара з DOM, дочірні шари не зіставляються автоматично. Для брейкпоінта є явна опція перевірки innerWidth. Сайт-обхід з таким еталоном заблоковано. PAT тільки storage.session та X-Figma-Token до api.figma.com, не в local cache/репортах. При відновленні еталона з local cache не потрібен PAT до наступного оновлення з Figma. Тест npm run test:figma використовує нейтральний fixture API, не доступ до приватного файлу.
+
+Токен Figma тепер зберігається постійно в storage.local з accessLevel TRUSTED_CONTEXTS, окремо від siteReferences/звітів. figma-credentials.js мігрує живий session token, відновлює між сесіями, видаляє при Disconnect або 401. Скидання еталонів не відключає Figma. Дату завершення визначає API Figma, не вгадувати її з ключа.

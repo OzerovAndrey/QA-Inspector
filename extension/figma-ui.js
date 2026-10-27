@@ -7,7 +7,7 @@ export function setupFigmaUI({useSystem,isBusy}){
  const message=(text,error=false)=>{$('figma-message').textContent=text;$('figma-message').classList.toggle('error',error);};
  function selectSource(type){for(const name of ['figma','json']){const selected=name===type;$(name+'-source').hidden=!selected;$('source-'+name).setAttribute('aria-selected',String(selected));$('source-'+name).tabIndex=selected?0:-1;}$('reference-hint').textContent=type==='figma'?'Порівняйте сайт із вибраним макетом Figma.':'Порівняйте сайт із дизайном за JSON.';}
  for(const type of ['figma','json']){$('source-'+type).onclick=()=>selectSource(type);$('source-'+type).onkeydown=event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?'figma':event.key==='End'?'json':type==='figma'?'json':'figma';selectSource(next);$('source-'+next).focus();}};}
- async function connection(){const connected=Boolean(await getFigmaToken());$('figma-token-step').hidden=connected;$('figma-connected').hidden=!connected;$('figma-link-step').hidden=!connected;$('figma-connection-status').textContent='Можна додати посилання. Доступ до файлу перевіримо під час завантаження.';}
+ async function connection(){const connected=Boolean(await getFigmaToken());$('figma-token-step').hidden=connected;$('figma-connected').hidden=!connected;$('figma-link-step').hidden=!connected;}
  selectSource('figma');
  function helpError(text){$('figma-token-help-error').textContent=text;$('figma-token-help-error').hidden=false;$('figma-token-help').showPopover();}
  $('figma-help').addEventListener('click',()=>{$('figma-token-help-error').hidden=true;});

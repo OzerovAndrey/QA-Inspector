@@ -54,6 +54,8 @@ export async function setupPanelShell({getState}){
   const arrow=make('button','▾','split-toggle');arrow.id=mode+'-export-toggle';arrow.setAttribute('popovertarget',options.id);arrow.setAttribute('aria-label','Формати експорту');actions.append(arrow);
   for(const format of ['json','md'])$(mode+'-'+format).addEventListener('click',()=>options.hidePopover());
  }
+ // Escape in the side panel must delegate to the same cancellation handler as the button.
+ document.addEventListener('keydown',event=>{if(event.key!=='Escape'||!getState().pickerActive)return;event.preventDefault();event.stopImmediatePropagation();$('component-stop').click();},true);
  $('component-stop').textContent='Скасувати';$('component-stop').append(make('kbd','Esc'));
  const banner=make('div','<span id="site-access-description">Потрібен доступ до цього сайту.</span><button id="site-access-grant" class="secondary">Надати доступ</button>','access-banner');banner.id='site-access-banner';banner.hidden=true;document.querySelector('.mode-tabs-shell').after(banner);
  $('site-access-grant').onclick=async()=>{await $('grant').onclick();await access();};

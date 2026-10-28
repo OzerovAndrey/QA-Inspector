@@ -170,4 +170,4 @@ chrome.tabs.onActivated?.addListener(async info=>{if(resetting||!boundPage||info
 chrome.tabs.onUpdated?.addListener((id,change)=>{if(boundPage&&id===boundPage.tabId&&((change.url&&change.url!==boundPage.url)||change.status==='loading'))resetInspector(false);});
 
 // UI-only adapter: rearranges controls, wraps import/export and presents existing state.
-await setupPanelShell({getState:()=>({system,comparing,mode:activeMode,pickerActive:Boolean(pendingPick),hasSelection:Boolean(states.component.result),pageURL:boundPage?.url,busy:anyBusy()})});
+await setupPanelShell({getState:()=>({system,comparing,mode:activeMode,pickerActive:Boolean(pendingPick),hasSelection:Boolean(states.component.result),hasResetData:Boolean(system||modes.some(mode=>states[mode].result||states[mode].job||states[mode].detail)),pageURL:boundPage?.url,busy:anyBusy()})});

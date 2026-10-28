@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="36 36 184 184" fill="none" role="img" aria-labelledby="title desc">
   <title id="title">QA Inspector — знак без фону</title>
   <desc id="desc">Геометрична рамка вибору та галочка перевірки.</desc>
   <path d="M88 48H48V88 M168 48H208V88 M48 168V208H88 M208 168V208H168" stroke="#5148E5" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>

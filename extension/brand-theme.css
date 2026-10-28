@@ -91,3 +91,4 @@ progress{accent-color:var(--brand-purple);border-radius:var(--radius)}
 
 .reference-title-toggle{display:flex;align-items:center;gap:8px;font:inherit;color:inherit;cursor:pointer}
 .reference-title-toggle input{margin:0;accent-color:var(--brand-purple);width:14px;height:14px;flex:none}
+.reference-heading h2 .reference-title-toggle>span{font:inherit;color:inherit;display:inline;margin:0}

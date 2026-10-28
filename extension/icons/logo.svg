@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 32 32">
-  <title>QA Inspector</title>
-  <defs><linearGradient id="surface" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#6655F5"/><stop offset="1" stop-color="#3930B5"/></linearGradient></defs>
-  <rect width="32" height="32" rx="8" fill="url(#surface)"/>
-  <path d="M24 16v-4l-5-5h-7l-5 5v8l5 5h6" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/>
-  <path d="m16 19 4 4 7-8" fill="none" stroke="#58F0CD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#5148E5"/><path d="M10 6H6v5m15-5h5v5M6 21v5h5m15-5v5h-5" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="m11 16 4 4 7-8" fill="none" stroke="#65F6D2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>

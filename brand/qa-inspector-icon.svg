@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">QA Inspector — Focus</title>
+  <desc id="desc">Геометрична рамка вибору та галочка перевірки.</desc>
+  <rect width="256" height="256" rx="64" fill="#5148E5"/>
+  <path d="M88 48H48V88 M168 48H208V88 M48 168V208H88 M208 168V208H168" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M88 128L120 160L176 96" stroke="#65F6D2" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

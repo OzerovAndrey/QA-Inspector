@@ -10,7 +10,8 @@
     "test:extension": "node tests/extension-smoke.cjs",
     "test:landing": "node tests/landing-smoke.cjs",
     "test:figma": "node tests/figma-smoke.cjs",
-    "test:figma-page": "node tests/figma-page-smoke.cjs"
+    "test:figma-page": "node tests/figma-page-smoke.cjs",
+    "test:text-highlight": "node tests/text-highlight-smoke.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

@@ -63,7 +63,40 @@ export function revealElement(selector,description='Елемент із резу
   tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;background:#952e2a;color:white;border-radius:7px;padding:9px 12px;font:12px/1.5 system-ui;max-width:min(360px,calc(100vw - 16px));overflow-wrap:anywhere;box-shadow:0 4px 18px #0003';tip.style.whiteSpace='pre-line';tip.textContent=description;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const pulse=reduced||hover?null:overlay.animate([{opacity:1},{opacity:.3},{opacity:1}],{duration:1200,iterations:5});
   document.documentElement.append(overlay,tip);
-  const update=()=>{const rect=el.getBoundingClientRect(),r={left:rect.left,top:rect.top,width:rect.width,height:rect.height,bottom:rect.bottom};if(property&&/^(padding|margin)/.test(property)){const amount=parseFloat(getComputedStyle(el)[property])||0,margin=property.startsWith('margin');if(property.endsWith('Top')){r.height=Math.abs(amount);if(margin)r.top-=amount;}else if(property.endsWith('Bottom')){r.top=margin?rect.bottom:rect.bottom-amount;r.height=Math.abs(amount);}else if(property.endsWith('Left')){r.width=Math.abs(amount);if(margin)r.left-=amount;}else if(property.endsWith('Right')){r.left=margin?rect.right:rect.right-amount;r.width=Math.abs(amount);}r.bottom=r.top+r.height;}Object.assign(overlay.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});Object.assign(tip.style,{left:Math.max(8,Math.min(r.left,innerWidth-tip.offsetWidth-8))+'px',top:Math.max(8,Math.min(r.bottom+8,innerHeight-tip.offsetHeight-8))+'px'});};
+  const textProperty=['fontFamily','fontSize','fontWeight','letterSpacing','lineHeight','color','textAlign','textDecoration','textTransform'].includes(property);
+  if(textProperty){overlay.dataset.qaHighlight='text';overlay.style.border='0';overlay.style.background='transparent';}
+  function textRects(){
+    const rectangles=[],rootCSS=getComputedStyle(el),walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+    let node;
+    while((node=walker.nextNode())){
+      const text=node.textContent,parent=node.parentElement;if(!text.trim()||!parent||overlay.contains(parent)||tip.contains(parent)||parent.closest('script,style,noscript,svg,[aria-hidden="true"]'))continue;
+      const css=getComputedStyle(parent);if(css.visibility!=='visible'||!parent.getClientRects().length||css[property]!==rootCSS[property])continue;
+      let hidden=false;for(let ancestor=parent;ancestor;ancestor=ancestor.parentElement){if(getComputedStyle(ancestor).opacity==='0'){hidden=true;break;}if(ancestor===el)break;}if(hidden)continue;
+      const range=document.createRange(),first=text.search(/\S/),last=text.search(/\s*$/);range.setStart(node,first);range.setEnd(node,last);
+      for(const rect of range.getClientRects())if(rect.width>0&&rect.height>0)rectangles.push(rect);
+    }
+    return rectangles;
+  }
+  const update=()=>{
+    const rect=el.getBoundingClientRect(),r={left:rect.left,top:rect.top,width:rect.width,height:rect.height,bottom:rect.bottom};
+    if(textProperty){
+      const rectangles=textRects();overlay.replaceChildren();overlay.style.display=rectangles.length?'block':'none';
+      tip.textContent=description+(rectangles.length?'':'\nНемає видимого тексту для цієї властивості.');
+      if(rectangles.length){
+        r.left=Math.min(...rectangles.map(box=>box.left));r.top=Math.min(...rectangles.map(box=>box.top));
+        r.width=Math.max(...rectangles.map(box=>box.right))-r.left;r.bottom=Math.max(...rectangles.map(box=>box.bottom));r.height=r.bottom-r.top;
+        for(const box of rectangles){const fragment=document.createElement('div');fragment.dataset.qaTextFragment='true';fragment.style.cssText='position:absolute;pointer-events:none;outline:2px solid #e45145;background:#e4514519;border-radius:2px';Object.assign(fragment.style,{left:(box.left-r.left)+'px',top:(box.top-r.top)+'px',width:box.width+'px',height:box.height+'px'});overlay.append(fragment);}
+      }
+    }else if(property&&/^(padding|margin)/.test(property)){
+      const amount=parseFloat(getComputedStyle(el)[property])||0,margin=property.startsWith('margin');
+      if(property.endsWith('Top')){r.height=Math.abs(amount);if(margin)r.top-=amount;}
+      else if(property.endsWith('Bottom')){r.top=margin?rect.bottom:rect.bottom-amount;r.height=Math.abs(amount);}
+      else if(property.endsWith('Left')){r.width=Math.abs(amount);if(margin)r.left-=amount;}
+      else if(property.endsWith('Right')){r.left=margin?rect.right:rect.right-amount;r.width=Math.abs(amount);}r.bottom=r.top+r.height;
+    }
+    Object.assign(overlay.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});
+    Object.assign(tip.style,{left:Math.max(8,Math.min(r.left,innerWidth-tip.offsetWidth-8))+'px',top:Math.max(8,Math.min(r.bottom+8,innerHeight-tip.offsetHeight-8))+'px'});
+  };
   const cleanup=()=>{clearTimeout(timer);pulse?.cancel();overlay.remove();tip.remove();window.removeEventListener('scroll',update,true);window.removeEventListener('resize',update);window.removeEventListener('keydown',key,true);delete globalThis.__qaRevealCleanup;};
   const key=e=>{if(e.key==='Escape')cleanup();};const timer=setTimeout(cleanup,6000);
   window.addEventListener('scroll',update,true);window.addEventListener('resize',update);window.addEventListener('keydown',key,true);globalThis.__qaRevealCleanup=cleanup;update();return true;

@@ -16,7 +16,7 @@ const paths={
  more:'M5 12h14m-7-7v14'
 };
 function decorate(){for(const button of document.querySelectorAll('button')){
- const text=button.textContent.trim(),id=button.id;let kind='more';
+ const text=button.dataset.i18nSource||button.textContent.trim(),id=button.id;let kind='more';
  if(button.querySelector('svg'))continue;
  if(id==='component-stop')kind='close';else if(id==='figma-refresh')kind='reset';else if(id==='figma-help')kind='info';else if(id==='source-figma')kind='page';else if(id==='figma-connect'||id==='figma-disconnect')kind='lock';else if(id==='figma-use'||id==='figma-load')kind='check';else if(button.classList.contains('conflict-select'))kind='target';else if(id==='reset-all')kind='reset';else if(id==='reference-info'||button.classList.contains('info-button'))kind='info';
  else if(id==='import'||/Завантажити/.test(text))kind='upload';else if(/копію|Копію/.test(text))kind=/Скопійовано/.test(text)?'check':'copy';

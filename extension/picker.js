@@ -1,16 +1,17 @@
 // Self-contained hover inspector. Visual overlays never alter the site's component CSS.
-export function startPicker(){
+export function startPicker(options={}){
+ const words={intro:"Наведіть на компонент",controls:"Клік — зафіксувати · ↑ / ↓ — рівень · Esc — вийти",font:"Шрифт",padding:"Відступи та проміжки",actual:"Фактичні CSS",...options.labels};
  globalThis.__qaPickerCleanup?.();
  const cursorStyle=document.createElement('style');cursorStyle.textContent='html, html * { cursor: crosshair !important; }';document.documentElement.append(cursorStyle);
  const box=document.createElement('div');box.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;border:2px solid #4355d9;background:#4355d915;display:none;box-sizing:border-box';
- const tip=document.createElement('div');tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;max-width:330px;background:#202c3b;color:white;border-radius:9px;padding:10px 12px;font:12px/1.6 system-ui;left:12px;top:12px;box-shadow:0 6px 24px #0003;white-space:pre-line';tip.textContent='Наведіть на компонент\nКлік — зафіксувати · ↑ — батьківський блок · Esc — вийти';document.documentElement.append(box,tip);
+ const tip=document.createElement('div');tip.style.cssText='position:fixed;pointer-events:none;z-index:2147483647;max-width:330px;background:#202c3b;color:white;border-radius:9px;padding:10px 12px;font:12px/1.6 system-ui;left:12px;top:12px;box-shadow:0 6px 24px #0003;white-space:pre-line';tip.textContent=words.intro+'\n'+words.controls;document.documentElement.append(box,tip);
  let current=null,timer=null,lastSelector='',lastX=12,lastY=12;
  function path(el){const pieces=[];for(let n=el;n&&n.nodeType===1;n=n.parentElement){const siblings=n.parentElement?[...n.parentElement.children].filter(x=>x.localName===n.localName):[n];pieces.unshift(n.localName+':nth-of-type('+(siblings.indexOf(n)+1)+')');}return pieces.join(' > ');}
  function target(e){if(!(e.target instanceof Element))return null;return e.altKey?e.target.parentElement:e.target.closest('button,[role="button"],a.btn,input,select,textarea')||e.target;}
  function show(el,send=true){
   if(!(el instanceof Element)||el===box||el===tip)return;current=el;const r=el.getBoundingClientRect(),css=getComputedStyle(el);
   Object.assign(box.style,{display:'block',left:r.x+'px',top:r.y+'px',width:r.width+'px',height:r.height+'px'});
-  tip.textContent=`${el.localName}${el.id?'#'+el.id:''} · ${Math.round(r.width*10)/10} × ${Math.round(r.height*10)/10}\nШрифт: ${css.fontSize} / ${css.fontWeight}\nPadding: ${css.paddingTop} ${css.paddingRight} ${css.paddingBottom} ${css.paddingLeft}\nGap: ${css.gap} · Radius: ${css.borderTopLeftRadius}\nФактичні CSS · порівняння з JSON у панелі\nКлік — зафіксувати · ↑ / ↓ — рівень · Esc — вийти`;
+  tip.textContent=`${el.localName}${el.id?'#'+el.id:''} · ${Math.round(r.width*10)/10} × ${Math.round(r.height*10)/10}\n${words.font}: ${css.fontSize} / ${css.fontWeight}\n${words.padding}: ${css.paddingTop} ${css.paddingRight} ${css.paddingBottom} ${css.paddingLeft}\nGap: ${css.gap} · Radius: ${css.borderTopLeftRadius}\n${words.actual}\n${words.controls}`;
   Object.assign(tip.style,{left:Math.max(8,Math.min(lastX+16,innerWidth-tip.offsetWidth-8))+'px',top:Math.max(8,Math.min(lastY+16,innerHeight-tip.offsetHeight-8))+'px'});
   const selector=path(el);if(send&&selector!==lastSelector){lastSelector=selector;chrome.runtime.sendMessage({type:'QA_HOVER',selector,url:location.href}).catch(()=>{});}
  }

@@ -150,3 +150,6 @@ body.compact-ui{background:#fff;min-width:300px}
 .compact-ui .result-controls .split-toggle{flex:none;color:#1763b6}
 .compact-ui .result-controls .reset-all:hover:not(:disabled){color:#941b28;background:#fff4f5}
 .compact-ui .result-controls .split-export>.text-button:hover:not(:disabled){color:#104f94;background:#f0f6ff}
+
+.compact-ui .language-setting{display:grid;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.compact-ui #language-select{width:100%;min-height:32px;padding:6px 10px;font-size:13px}

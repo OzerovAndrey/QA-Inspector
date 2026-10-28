@@ -128,3 +128,7 @@ body.compact-ui{background:#fff;min-width:300px}
 
 .compact-ui .comparison-section>h2{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.5;margin:0;padding:8px 0;color:var(--ink)}
 .compact-ui .comparison-section>h2 .figma-logo{width:14px;height:21px;flex:none}
+
+.compact-ui .shell-header{padding-bottom:8px}
+.shell-quick-actions{display:flex;justify-content:flex-end;margin:0 0 16px}
+.compact-ui .shell-quick-actions .reset-all{margin:0;padding:4px 8px;min-height:32px;font-size:12px;color:#625c70;background:#faf9fd;border:1px solid var(--line)}

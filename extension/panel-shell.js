@@ -8,12 +8,12 @@ export async function setupPanelShell({getState}){
  const make=(tag,html,cls)=>{const el=document.createElement(tag);if(html)el.innerHTML=html;if(cls)el.className=cls;return el;};
  const pop=(id,label)=>{const el=make('div',`<h3>${label}</h3>`,'shell-popover');el.id=id;el.setAttribute('popover','auto');document.body.append(el);return el;};
  const header=make('header','<div class="shell-brand"><img src="icons/logo.svg" width="24" height="24" alt=""><strong>QA Inspector</strong></div><div class="shell-header-actions"><button id="figma-status-chip" popovertarget="figma-status-menu" aria-label="Підключення Figma"><span id="figma-status-dot" aria-hidden="true">○</span> Figma</button><button id="panel-menu-button" popovertarget="panel-menu" aria-label="Меню панелі">⋯</button></div>','shell-header');main.prepend(header);
- const menu=pop('panel-menu','Меню');menu.append($('reset-all'));
+ const menu=pop('panel-menu','Меню');const quickActions=make('div',null,'shell-quick-actions');quickActions.append($('reset-all'));header.after(quickActions);
  for(const [id,text]of [['menu-access','Доступ до сайту'],['menu-help','Допомога']]){const b=make('button',text);b.id=id;menu.append(b);b.onclick=()=>{menu.hidePopover();help.showPopover();if(id==='menu-access')$('grant').focus();};}
  menu.append(make('p','Працює локально, без сервера','hint'));
  const help=pop('panel-help','Доступ до сайту й допомога');const settings=document.querySelector('.settings');settings.open=true;settings.querySelector('summary').hidden=true;help.append(settings);
  const confirm=make('dialog','<h3>Скинути всі дані?</h3><p>Макети та результати буде видалено з цього пристрою. Токен Figma збережеться.</p><div class="dialog-actions"><button id="reset-cancel">Скасувати</button><button id="reset-confirm-action" class="primary">Скинути все</button></div>','shell-dialog');confirm.id='reset-confirm';document.body.append(confirm);
- const reset=$('reset-all').onclick;$('reset-all').onclick=()=>{menu.hidePopover();confirm.showModal();$('reset-cancel').focus();};$('reset-cancel').onclick=()=>confirm.close();$('reset-confirm-action').onclick=async()=>{confirm.close();await reset();};
+ const reset=$('reset-all').onclick;$('reset-all').onclick=()=>{if(menu.matches(':popover-open'))menu.hidePopover();confirm.showModal();$('reset-cancel').focus();};$('reset-cancel').onclick=()=>confirm.close();$('reset-confirm-action').onclick=async()=>{confirm.close();await reset();};
  const connection=pop('figma-status-menu','Підключення Figma');connection.dataset.editing='false';
  const entry=make('button','Підключити Figma');entry.id='connection-edit';connection.append(entry,$('figma-token-step'),$('figma-connected'));
  entry.onclick=()=>{connection.dataset.editing='true';$('figma-token').focus();};

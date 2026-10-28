@@ -141,3 +141,12 @@ body.compact-ui{background:#fff;min-width:300px}
 .compact-ui .result-header{flex-wrap:wrap}
 .result-controls{display:flex;align-items:center;gap:8px;margin-left:auto}
 .compact-ui .result-controls .reset-all{margin:0;padding:4px 8px;min-height:32px;font-size:12px;white-space:nowrap;color:var(--muted);background:#faf9fd;border:1px solid var(--line)}
+/* Result actions fill their row rather than leaving a floating gap. */
+.compact-ui .result-header h3{flex-basis:100%}
+.compact-ui .result-controls{width:100%;margin-left:0;gap:8px}
+.compact-ui .result-controls .reset-all{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;color:#b42332}
+.compact-ui .result-controls .split-export{flex:1;min-width:0;display:flex}
+.compact-ui .result-controls .split-export>.text-button{flex:1;min-width:0;color:#1763b6;white-space:nowrap}
+.compact-ui .result-controls .split-toggle{flex:none;color:#1763b6}
+.compact-ui .result-controls .reset-all:hover:not(:disabled){color:#941b28;background:#fff4f5}
+.compact-ui .result-controls .split-export>.text-button:hover:not(:disabled){color:#104f94;background:#f0f6ff}

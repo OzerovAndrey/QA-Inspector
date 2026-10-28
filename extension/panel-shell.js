@@ -18,7 +18,7 @@ export async function setupPanelShell({getState}){
  const entry=make('button','Підключити Figma');entry.id='connection-edit';connection.append(entry,$('figma-token-step'),$('figma-connected'));
  entry.onclick=()=>{connection.dataset.editing='true';$('figma-token').focus();};
  $('figma-token-step').querySelector('h3').textContent='Ключ доступу Figma';
- const compare=make('details','<summary>Порівняти з Figma</summary>','comparison-section');compare.id='reference-section';
+ const compare=make('section','<h2 id="comparison-title">Порівняти з Figma</h2>','comparison-section');compare.id='reference-section';compare.setAttribute('aria-labelledby','comparison-title');compare.querySelector('h2').prepend($('figma-connected').querySelector('.figma-logo').cloneNode(true));
  const workspace=document.querySelector('.workspace'),reference=document.querySelector('.reference-card');compare.append(reference);workspace.remove();main.append(compare);
  document.querySelector('.reference-sources').hidden=true;$('source-figma').parentElement.setAttribute('aria-hidden','true');$('figma-source').hidden=false;$('json-source').hidden=false;for(const id of ['figma-source','json-source']){$(id).removeAttribute('role');$(id).removeAttribute('aria-labelledby');}
  document.querySelector('.reference-heading').hidden=true;$('reference-hint').hidden=true;
@@ -42,8 +42,8 @@ export async function setupPanelShell({getState}){
  };
  url.addEventListener('paste',event=>{const text=event.clipboardData?.getData('text/plain')?.trim();if(!text)return;event.preventDefault();if(text.startsWith('{')){importFiles([new File([text],'pasted-tokens.json',{type:'application/json'})]);return;}url.value=text;apply();});
  url.addEventListener('change',apply);url.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();apply();}});url.addEventListener('input',()=>{if(!applying)validate();});
- async function importFiles(files){if(applying||getState().busy)return;if(files.length!==1){status.textContent='Оберіть один JSON або ZIP з JSON-файлами.';status.dataset.state='error';return;}const dt=new DataTransfer();dt.items.add(files[0]);$('system-file').files=dt.files;compare.open=true;await $('system-file').onchange();sync();}
- const fileChange=$('system-file').onchange;$('system-file').onchange=async()=>{status.textContent='Перевіряємо файл…';status.dataset.state='validating';await fileChange();const error=$('import-message').classList.contains('error');status.textContent=error?$('import-message').textContent:'Макет застосовано';status.dataset.state=error?'error':'applied';compare.open=true;sync();};
+ async function importFiles(files){if(applying||getState().busy)return;if(files.length!==1){status.textContent='Оберіть один JSON або ZIP з JSON-файлами.';status.dataset.state='error';return;}const dt=new DataTransfer();dt.items.add(files[0]);$('system-file').files=dt.files;await $('system-file').onchange();sync();}
+ const fileChange=$('system-file').onchange;$('system-file').onchange=async()=>{status.textContent='Перевіряємо файл…';status.dataset.state='validating';await fileChange();const error=$('import-message').classList.contains('error');status.textContent=error?$('import-message').textContent:'Макет застосовано';status.dataset.state=error?'error':'applied';sync();};
  // Accept files anywhere in the collapsed comparison section as well as the input drop zone.
  for(const surface of [compare,drop]){surface.addEventListener('dragover',event=>{event.preventDefault();surface.classList.add('drag-over');});surface.addEventListener('dragleave',()=>surface.classList.remove('drag-over'));surface.addEventListener('drop',event=>{event.preventDefault();event.stopPropagation();surface.classList.remove('drag-over');importFiles([...event.dataTransfer.files]);});}
  drop.addEventListener('keydown',event=>{if(event.target===drop&&['Enter',' '].includes(event.key)){event.preventDefault();$('system-file').click();}});
@@ -61,7 +61,7 @@ export async function setupPanelShell({getState}){
  $('grant').addEventListener('click',()=>setTimeout(access,100));
  let connected=false;
  function connectionState(value,error=false){connected=value;$('figma-status-dot').textContent=error?'!':value?'●':'○';$('figma-status-chip').dataset.state=error?'error':value?'connected':'disconnected';$('figma-status-chip').setAttribute('aria-label',error?'Помилка підключення Figma':value?'Figma підключено':'Figma не підключено');entry.hidden=value;connect.hidden=value;if(value)connection.dataset.editing='false';}
- document.addEventListener('qa:figma-connection',event=>{const newlyConnected=event.detail.connected&&(!connected||connection.matches(':popover-open'));connectionState(event.detail.connected,event.detail.error);if(newlyConnected){compare.open=true;if(connection.matches(':popover-open'))connection.hidePopover();url.focus();}});
+ document.addEventListener('qa:figma-connection',event=>{const newlyConnected=event.detail.connected&&(!connected||connection.matches(':popover-open'));connectionState(event.detail.connected,event.detail.error);if(newlyConnected){if(connection.matches(':popover-open'))connection.hidePopover();url.focus();}});
  $('figma-token-help').addEventListener('toggle',event=>{if(event.newState==='closed'&&!connected){connection.dataset.editing='true';connection.showPopover();$('figma-token').focus();}});
  chrome.storage.onChanged.addListener((changes,area)=>{if(area==='local'&&changes.figmaAccessToken)connectionState(Boolean(changes.figmaAccessToken.newValue));});connectionState(Boolean(await getFigmaToken()));
  let updating=false,knownPageURL;

@@ -125,3 +125,6 @@ body.compact-ui{background:#fff;min-width:300px}
 .compact-ui .property-group[open]>summary{border-bottom:1px solid var(--line)}
 .compact-ui .property-row{padding:10px 0}
 .compact-ui .conflict-comparison td:last-child{color:#403566;background:#f8f6fd}
+
+.compact-ui .comparison-section>h2{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.5;margin:0;padding:8px 0;color:var(--ink)}
+.compact-ui .comparison-section>h2 .figma-logo{width:14px;height:21px;flex:none}

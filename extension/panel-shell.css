@@ -1,0 +1,127 @@
+/* Compact 370px tool panel. UI layer only; measured page colors are untouched. */
+:root{--accent:#5148e5;--brand-purple:#5148e5;--primary:#5148e5;--ink:#282436;--muted:#625c70;--line:#e3dfed;--surface:#fff;--tint:#f3f0fc;--success:#16745f;--error:#a82d38;--radius:12px;--radius-sm:8px;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+body.compact-ui{background:#fff;min-width:300px}
+.compact-ui main{padding:16px;max-width:850px;margin:auto}
+.compact-ui :is(p,label,summary,small,code,.hint,.source,.notice,.zone-label,.badge,.chip,.property-heading,.property-group>summary,.property-row details summary,.element-identity small,.conflict-element,.conflict-copy,.reference-heading h2,.figma-instructions,.figma-step-title){font-size:12px}
+.compact-ui :is(h2,h3){font-size:14px;letter-spacing:0;color:var(--ink)}
+.compact-ui :is(.hint,.source,.notice,.element-label,.element-identity small,.property-heading,.values span){color:var(--muted)}
+.compact-ui .shell-header{padding:0 0 20px;background:#fff;color:var(--ink);border:0;box-shadow:none;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.shell-brand,.shell-header-actions{display:flex;align-items:center;gap:8px}.shell-brand{font-size:14px}.shell-brand img{flex:none}.shell-brand strong{white-space:nowrap}
+.compact-ui button{font-size:12px;min-height:32px;border-radius:var(--radius-sm);padding:6px 10px}
+.compact-ui .shell-header-actions button{white-space:nowrap;background:#faf9fd;border:1px solid var(--line);color:var(--muted);margin:0}
+.compact-ui #figma-status-chip[data-state=connected]{color:var(--success)}
+.compact-ui #figma-status-chip[data-state=error]{color:var(--error);border-color:#d49ca2}
+.compact-ui #panel-menu-button{font-size:22px;line-height:1;width:32px;padding:0}
+.compact-ui .mode-tabs-shell{border:0;margin:0;padding:0;background:transparent}
+.compact-ui .tabs{padding:4px;background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);gap:4px}
+.compact-ui .tabs button{min-height:32px;border-radius:var(--radius-sm);padding:6px 4px;font-size:12px;color:var(--muted)}
+.compact-ui .tabs button[aria-selected=true]{background:var(--accent);color:#fff}
+.compact-ui .tabs button:hover:not(:disabled){background:#e8e2f9}
+.compact-ui .tabs button[aria-selected=true]:hover:not(:disabled){background:#4035c3}
+.compact-ui .mode-workspace{border:0;background:transparent;margin:16px 0 20px;padding:0;border-radius:0;box-shadow:none}
+.compact-ui .primary,.compact-ui .primary.full{min-height:40px;background:var(--accent);border:1px solid var(--accent);color:#fff;border-radius:var(--radius);margin:0;box-shadow:none}
+.compact-ui .primary:hover:not(:disabled){background:#4035c3;border-color:#4035c3}
+.compact-ui .primary[aria-pressed=true]{background:#3b30b8;border-color:#3b30b8;color:#fff;box-shadow:0 0 0 3px #e8e3fc}
+.compact-ui .primary[aria-pressed=true] span:after{content:''}
+.compact-ui .text-button{font-size:12px;min-height:32px;color:var(--accent);padding:4px 0;border:0;background:transparent}
+.compact-ui .text-button:hover:not(:disabled){color:#3d31af;background:transparent}
+.compact-ui .secondary{background:#f6f5f9;color:#474150;border:1px solid #d7d2e1;border-radius:var(--radius-sm)}
+.compact-ui button:disabled{opacity:.5}
+.compact-ui .results-section{margin:0;padding:20px 0;border:0;border-top:1px solid var(--line);background:transparent;border-radius:0;box-shadow:none}
+.compact-ui .results-section>.zone-label{display:none}
+.compact-ui .result-header{gap:8px;flex-wrap:nowrap;align-items:center}
+.compact-ui .result-header h3{font-size:14px}
+.compact-ui .report-actions{gap:0;flex:none}
+.compact-ui .split-export{border:1px solid #d7d2e1;border-radius:var(--radius-sm);overflow:hidden;background:#faf9fd}
+.compact-ui .split-export .text-button{padding:4px 10px;color:#474150;background:transparent;border-radius:0}
+.compact-ui .split-toggle{border:0;border-left:1px solid #d7d2e1;border-radius:0;background:transparent;padding:4px 8px;color:#474150}
+.compact-ui .split-toggle:before{display:none}
+.compact-ui .empty{margin:16px 0 0;padding:24px 16px;background:#faf9fd;border:1px dashed var(--line);border-radius:var(--radius);font-size:13px;color:var(--muted)}
+.compact-ui .component-result,.compact-ui .property-group,.compact-ui .page-result,.compact-ui .conflict-item,.compact-ui .inventory{border-radius:var(--radius-sm)}
+.compact-ui .component-result>summary{padding:12px;background:#f6f4fa}
+.compact-ui .property-group>summary{padding:8px 12px;background:#f7f5fb}
+.compact-ui .property-row code,.compact-ui .conflict-comparison td{font-size:12px}
+.compact-ui .conflict-comparison th{font-size:12px;color:var(--muted)}
+.compact-ui .property-row details summary,.compact-ui .values span,.compact-ui .values b{font-size:12px}
+.compact-ui .stat{padding:8px;border-radius:var(--radius-sm);font-size:12px;background:#faf9fd}
+.compact-ui .stat b{font-size:20px}
+.compact-ui .chip{font-size:12px}
+.compact-ui .conflict-select{font-size:12px;border-radius:0}
+.compact-ui .conflict-select:hover:not(:disabled){background:transparent}
+.compact-ui .comparison-section{border-top:1px solid var(--line);margin:0;padding:16px 0 0}
+.compact-ui .comparison-section>summary{font-size:13px;min-height:36px;padding:8px 0;color:var(--ink)}
+.compact-ui .reference-card{padding:12px 0 0;margin:0;background:transparent;border:0;border-radius:0}
+.compact-ui .reference-sources,.compact-ui .reference-heading,.compact-ui #reference-hint{display:none}
+.compact-ui #figma-source,.compact-ui #json-source{display:contents}
+.compact-ui #figma-source[hidden],.compact-ui #json-source[hidden]{display:contents!important}
+.compact-ui #figma-link-step{margin:0}
+.compact-ui #figma-link-step>h3,.compact-ui #figma-link-step>p,.compact-ui #figma-load{display:none}
+.compact-ui input:not([type=checkbox]),.compact-ui select,.compact-ui textarea{border-radius:var(--radius-sm);font-size:13px;min-height:40px;border-color:#c8c1d5;padding:10px 12px;color:var(--ink)}
+.compact-ui #figma-source label{font-size:12px;margin:0 0 8px}
+.compact-ui #figma-url{font-size:13px;line-height:1.5}
+.compact-ui #figma-url::placeholder{color:#6f667e;font-size:12px;opacity:1}
+.compact-ui .layout-drop{border-radius:var(--radius-sm);outline-offset:3px}
+.compact-ui .drag-over{outline:2px dashed var(--accent);background:var(--tint)}
+.compact-ui #layout-status:empty{display:none}
+.compact-ui #layout-status[data-state=error]{color:var(--error)}
+.compact-ui #layout-status[data-state=applied]{color:var(--success)}
+.compact-ui [aria-invalid=true]{border-color:var(--error)!important}
+.compact-ui #import{width:auto;border:0;background:transparent;color:var(--accent);padding-left:0;min-height:32px;font-size:12px}
+.compact-ui .loaded-title{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin:12px 0 0}
+.compact-ui .loaded-title h3{font-size:13px;flex:1}
+.compact-ui .reference-actions{margin:0;gap:8px;flex:none}
+.compact-ui #replace{font-size:0;min-width:26px;padding:4px}
+.compact-ui #replace:before{margin:0;width:16px;height:16px}
+.compact-ui #remove-system{white-space:nowrap;font-size:12px}
+.compact-ui #remove-system:before{display:none}
+.compact-ui .comparison-advanced{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+.compact-ui .comparison-advanced>summary{font-size:12px;color:var(--muted)}
+.compact-ui #figma-editor{margin:8px 0}
+.compact-ui #figma-editor>summary{font-size:12px;color:var(--muted)}
+.compact-ui #figma-selection{padding:12px 0}
+.compact-ui #figma-readiness{padding:8px 0;border:0;background:transparent;border-radius:0;margin:0}
+.compact-ui #figma-readiness.error{background:transparent}
+.compact-ui #figma-message:not(.error),.compact-ui #import-message:not(.error){display:none}
+.compact-ui .access-banner{margin:12px 0;padding:12px;border:1px solid #d2c6f2;border-radius:var(--radius);background:var(--tint);font-size:12px;color:#51426b}
+.compact-ui .access-banner button{margin-top:8px;display:block}
+.compact-ui .site-progress{border:0;border-radius:var(--radius-sm)}
+.compact-ui .shell-popover,.compact-ui .shell-dialog{position:fixed;inset:16px 16px auto auto;max-width:min(338px,calc(100vw - 32px));width:338px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 48px #27203924;color:var(--ink);font-size:13px}
+.compact-ui .shell-popover h3,.compact-ui .shell-dialog h3{margin:0 0 12px;font-size:14px}
+.compact-ui .shell-popover>button{display:block;width:100%;text-align:left;margin:4px 0;min-height:32px;border:0;background:transparent}
+.compact-ui .shell-popover .hint{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin:12px 0 0}
+.compact-ui .shell-dialog{inset:0;margin:auto}
+.compact-ui .shell-dialog::backdrop{background:#211a3a66}
+.dialog-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.compact-ui .shell-popover .settings{padding:0;margin:0;background:transparent;border:0}
+.compact-ui .shell-popover .inset{border:0;padding:0}
+.compact-ui #figma-status-menu[data-editing=false] #figma-token-step{display:none}
+.compact-ui #figma-connected{margin:0;padding:0;border:0;background:transparent;border-radius:0}
+.compact-ui #figma-connected .figma-connected-label{display:none}
+.compact-ui .figma-connected-heading{justify-content:flex-start}
+.compact-ui #figma-token-step{margin:8px 0 0}
+.compact-ui #figma-token-step .hint{font-size:12px}
+.compact-ui .figma-token-help-row{align-items:flex-start;flex-wrap:wrap}
+.compact-ui .figma-token-help-row .hint{border:0;padding:0;margin:0;font-size:12px}
+.compact-ui #reference-description,.compact-ui #figma-token-help{font-size:13px;line-height:1.5;max-width:calc(100vw - 32px)}
+.compact-ui #figma-token-help :is(p,li,code){font-size:12px}
+.compact-ui .shell-popover .reset-all{color:#a82d38}
+.compact-ui button:focus-visible,.compact-ui summary:focus-visible,.compact-ui input:focus-visible,.compact-ui select:focus-visible,.compact-ui textarea:focus-visible,.compact-ui [tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.compact-ui .reference-title-toggle{display:flex;align-items:center;gap:8px}
+.compact-ui footer{display:none}
+.compact-ui .shell-popover .text-button:disabled{color:var(--muted)}
+[hidden]{display:none!important}
+@media(max-width:350px){.compact-ui main{padding:16px}.shell-brand{font-size:13px}.shell-header-actions{gap:4px}.compact-ui .shell-header-actions button{padding:4px 6px}.compact-ui .tabs button{font-size:12px}.compact-ui .report-actions{gap:0}.compact-ui .loaded-title{flex-wrap:wrap}.compact-ui .reference-actions{margin-left:auto}}
+
+.compact-ui .shell-header-actions button:before,.compact-ui #menu-access:before,.compact-ui #menu-help:before{display:none}
+
+.compact-ui .shell-popover{max-height:calc(100vh - 80px);overflow:auto;top:56px}
+
+.compact-ui kbd{font-family:inherit;font-size:12px;line-height:1.3;border:1px solid #d0c9df;border-radius:4px;padding:1px 4px;margin-left:8px;color:var(--muted);background:#faf9fd}
+.compact-ui h4,.compact-ui .progress-heading,.compact-ui .conflict-values{font-size:12px}
+.compact-ui .nc,.compact-ui .stat.nc b{color:#735c18}
+/* Property categories are sections within an element, rather than nested cards. */
+.compact-ui .property-group{border:0;border-top:1px solid var(--line);border-radius:0;background:transparent}
+.compact-ui .property-group>summary{padding:10px 0;background:transparent;border:0}
+.compact-ui .property-group[open]>summary{border-bottom:1px solid var(--line)}
+.compact-ui .property-row{padding:10px 0}
+.compact-ui .conflict-comparison td:last-child{color:#403566;background:#f8f6fd}

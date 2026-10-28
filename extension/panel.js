@@ -1,3 +1,4 @@
+import {setupPanelShell} from './panel-shell.js';
 import {getFigmaToken} from './figma-credentials.js';
 import {setupFigmaUI} from './figma-ui.js';
 import {scanFigmaTarget,scanFigmaPage,figmaPageReady,refreshFigmaSystem} from './figma-reference.js';
@@ -21,7 +22,7 @@ const node=(tag,text,cls)=>{const el=document.createElement(tag);if(text!==undef
 const field=(mode,id)=>$(mode+'-'+id);
 const updateDigest=()=>systemFingerprint({system:effectiveSystem(),context:comparing?$('context-choice').value:''});
 const effectiveSystem=()=>comparing&&system?system:extractionSystem;
-function notice(mode,text,error=false){states[mode].notice=text;states[mode].error=error;field(mode,'message').textContent=text;field(mode,'message').classList.toggle('error',error);}
+function notice(mode,text,error=false){states[mode].notice=text;states[mode].error=error;field(mode,'message').textContent=text;field(mode,'message').classList.toggle('error',error);document.dispatchEvent(new Event('qa:ui-state'));}
 function anyBusy(){return importing||states.component.busy||states.page.busy||states.site.busy||siteRunning;}
 function locks(){for(const id of ['import','replace','remove-system','compare-enabled','context-choice','grant','figma-refresh'])$(id).disabled=anyBusy();for(const mode of modes)field(mode,'action').disabled=importing||states[mode].busy||(mode==='site'&&(siteRunning||(comparing&&system?.source?.type==='figma')));}
 function clearOutput(mode){states[mode].result=null;states[mode].detail=null;states[mode].limit=60;}
@@ -165,3 +166,6 @@ async function resetInspector(clearAll=true){
 $('reset-all').onclick=()=>resetInspector(true);
 chrome.tabs.onActivated?.addListener(async info=>{if(resetting||!boundPage||info.tabId===boundPage.tabId)return;try{const tab=await chrome.tabs.get(info.tabId);if(tab.url&&!tab.url.startsWith('chrome-extension://'))await resetInspector(false);}catch{}});
 chrome.tabs.onUpdated?.addListener((id,change)=>{if(boundPage&&id===boundPage.tabId&&((change.url&&change.url!==boundPage.url)||change.status==='loading'))resetInspector(false);});
+
+// UI-only adapter: rearranges controls, wraps import/export and presents existing state.
+await setupPanelShell({getState:()=>({system,comparing,mode:activeMode,pickerActive:Boolean(pendingPick),hasSelection:Boolean(states.component.result),pageURL:boundPage?.url,busy:anyBusy()})});

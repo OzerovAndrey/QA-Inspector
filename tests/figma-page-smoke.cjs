@@ -1,7 +1,7 @@
 const {chromium}=require(process.env.QA_PLAYWRIGHT||'playwright');
 const assert=require('node:assert/strict');
 (async()=>{
- const {makeFigmaSystem,scanFigmaPage}=await import('../extension/figma-reference.js');
+ const {makeFigmaSystem,scanFigmaPage,scanFigmaTarget}=await import('../extension/figma-reference.js');
  const {evaluateScan}=await import('../extension/scan-core.js');
  const browser=await chromium.launch({...require('./browser-config.cjs'),headless:true});
  try{
@@ -22,6 +22,18 @@ const assert=require('node:assert/strict');
   for(const element of snapshot.elements)assert.equal(await page.locator(element.selector).count(),1);
   await page.locator('button').first().evaluate(el=>el.setAttribute('data-figma-node-id','1:4'));
   assert.equal((await scan()).figmaPage.matched,4);
+  await page.setContent('<main id="wrapper" data-figma-node-id="2:1" style="width:100%">Content</main>');
+  const wrapperSystem=makeFigmaSystem({name:'Wrapper',fileKey:'fixture',url:'https://www.figma.com/design/fixture?node-id=2-1'},{id:'2:1',name:'Wrapper',type:'FRAME',layoutSizingHorizontal:'FIXED',layoutSizingVertical:'HUG',absoluteBoundingBox:{width:1440,height:200},fills:[{type:'SOLID',color:{r:1,g:1,b:1}}]});
+  for(const fn of [scanFigmaTarget,scanFigmaPage]){
+   const read=()=>page.evaluate(({source,system})=>eval('('+source+')')(system,{selector:'#wrapper'}),{source:fn.toString(),system:wrapperSystem});
+   const fillSnapshot=await read();assert.equal(fillSnapshot.elements[0].dynamicWidth,true);
+   await page.locator('#wrapper').evaluate(el=>el.style.width='auto');assert.equal((await read()).elements[0].dynamicWidth,true);
+   const skipped=evaluateScan(fillSnapshot,wrapperSystem);assert.equal(skipped.counts.fail,0);assert.equal(skipped.counts.pass,0);assert.equal(skipped.elements[0].skippedChecks.length,2);
+   await page.locator('#wrapper').evaluate(el=>{el.style.width='200px';el.style.backgroundColor='red';});
+   const fixedSnapshot=await read();assert.equal(fixedSnapshot.elements[0].dynamicWidth,false);
+   assert.equal(evaluateScan(fixedSnapshot,wrapperSystem).elements[0].rows.filter(row=>row.status==='Fail').length,2);
+   await page.locator('#wrapper').evaluate(el=>{el.style.width='100%';el.style.backgroundColor='transparent';});
+  }
   delete system.source.layers;
   assert.match((await scan()).error,/Оновіть еталон/);
   console.log('Figma automatic page: nested matching, real conflicts, Fill/Hug skips, duplicate/missing coverage and selectors passed.');

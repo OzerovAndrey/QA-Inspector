@@ -18,7 +18,17 @@ export function evaluateScan(snapshot,system){
     return {...snapshot,systemName:'Дані сайту',mode:'extract',elements,counts:{pass:0,fail:0,nc:0,checks:0,extracted:elements.length,readings:elements.reduce((n,e)=>n+e.rows.length,0)}};
   }
   const elements=snapshot.elements.map(element=>{
-    const rows=Object.entries(element.rules).map(([property,rule])=>{
+    const skippedChecks=[];
+    const rows=Object.entries(element.rules).filter(([property])=>{
+      if(system.source?.type!=='figma')return true;
+      const actual=normalize(property,element.styles[property]);
+      let reason;
+      if(property==='backgroundColor'&&Array.isArray(actual)&&actual[3]===0&&(!element.styles.backgroundImage||element.styles.backgroundImage==='none'))reason='Прозорий фон — власної заливки немає';
+      const sizing=element.sizing||(snapshot.figmaPage?{}:system.source.sizing)||{};
+      if(['width','height'].includes(property)&&['FILL','HUG','DYNAMIC'].includes(sizing[property]))reason='Динамічний розмір Figma — '+sizing[property];
+      if(property==='width'&&element.dynamicWidth)reason='Обгортка заповнює доступну ширину на сайті';
+      if(reason){skippedChecks.push({property,reason});return false;}return true;
+    }).map(([property,rule])=>{
       const actual=element.styles[property],allowed=rule.tokens?rule.tokens.map(token=>({token,value:tokens[token]})):[{token:rule.token,value:Object.hasOwn(rule,'value')?rule.value:tokens[rule.token]}];
       const a=normalize(property,actual);
       const normalized=expected=>{
@@ -33,7 +43,7 @@ export function evaluateScan(snapshot,system){
       const values=[...new Set(allowed.map(x=>x.value))];
       return {property,actual,allowedValues:allowed,expected:match?match.value:values.slice(0,8).join(' · ')+(values.length>8?` … (+${values.length-8})`:''),token:match?.token||allowed.map(x=>x.token||'Фіксоване правило').slice(0,8).join(', '),tolerance:rule.tolerance,status,basis:system.mode==='tokens'?'token-set':'component-rule'};
     });
-    return {...element,rows,status:rows.some(r=>r.status==='Fail')?'Fail':rows.some(r=>r.status==='Not comparable')?'Not comparable':'Pass'};
+    return {...element,rows,skippedChecks,status:!rows.length?'Not comparable':rows.some(r=>r.status==='Fail')?'Fail':rows.some(r=>r.status==='Not comparable')?'Not comparable':'Pass'};
   });
   return {...snapshot,systemName:system.name,mode:system.mode||'components',source:system.source,elements,counts:{pass:elements.filter(e=>e.status==='Pass').length,fail:elements.filter(e=>e.status==='Fail').length,nc:elements.filter(e=>e.status==='Not comparable').length,checks:elements.reduce((n,e)=>n+e.rows.length,0)}};
 }
@@ -45,6 +55,7 @@ export function scanReport(result){
     return text;
   }
   let out=`# QA Inspector · ${safe(result.systemName)}\n\nURL: ${safe(result.url)}\nРежим: ${result.mode==='tokens'?'Значення з набору токенів (не перевірка ролі компонента)':'Правила компонентів'}\nКонтекст: ${safe(result.context)}\nЧас: ${safe(result.timestamp)}\nДжерело: ${safe(result.source?.url)}\nВерсія: ${safe(result.source?.revision)}\n\nПеревірено компонентів: ${result.elements.length}; правил: ${result.counts.checks}. Pass: ${result.counts.pass}; Fail: ${result.counts.fail}; Not comparable: ${result.counts.nc}. Без правил: ${result.uncovered.length}. Прихованих пропущено: ${result.hidden}. Ліміт досягнуто: ${result.truncated?'так':'ні'}.\n\n`;
+  if(result.source?.type==='figma'){const skipped=result.elements.flatMap(element=>(element.skippedChecks||[]).map(check=>`${safe(element.name)}: ${safe(check.property)} — ${safe(check.reason)}`));if(skipped.length)out+='## Пропущені властивості\n\n'+skipped.map(line=>'- '+line).join('\n')+'\n\n';}
   if(result.figmaPage)out+=`## Покриття Figma\n\nЗіставлено ${result.figmaPage.matched} із ${result.figmaPage.total} шарів.\n`+result.figmaPage.unmatched.map(layer=>`- ${safe(layer.name)}: ${safe(layer.reason)}`).join('\n')+'\n\n';
   for(const el of result.elements){out+=`## ${safe(el.name)} — ${safe(el.label)} (${el.status})\n\nСелектор: ${safe(el.selector)}\n\n| Властивість | На сторінці | За системою | Токен | Допуск | Результат |\n|---|---|---|---|---|---|\n`+el.rows.map(r=>'| '+[r.property,r.actual,r.expected,r.token,r.tolerance,r.status].map(safe).join(' | ')+' |').join('\n')+'\n\n';}
   if(result.uncovered.length)out+='## Без правил\n\n'+result.uncovered.map(e=>`- ${safe(e.label)} · ${safe(e.selector)}`).join('\n');

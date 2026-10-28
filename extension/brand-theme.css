@@ -77,3 +77,14 @@ button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visi
 .conflict-comparison tbody tr:last-child td{border-bottom:0}
 progress{accent-color:var(--brand-purple);border-radius:var(--radius)}
 @media(max-width:350px){.workspace,.mode-workspace,.results-section{padding-left:10px;padding-right:10px}.loaded-title{gap:6px}.report-actions{gap:6px}}
+
+/* The reference actions belong to its name; mode tabs belong to the workspace below. */
+.loaded-title{display:block;margin:13px 0 10px}
+.loaded-title h3{width:100%;margin:0}
+.reference-actions{display:flex;align-items:center;gap:16px;margin-top:6px;flex-wrap:wrap}
+.reference-actions button{white-space:nowrap}
+.mode-tabs-shell{margin:10px 8px 0;padding:12px 14px 8px;background:#fff;border:1px solid var(--line);border-bottom:0;border-radius:var(--radius) var(--radius) 0 0}
+.mode-tabs-shell .tabs{margin:0}
+.mode-workspace{margin-top:0;border-top:0;border-radius:0 0 var(--radius) var(--radius);padding-top:12px}
+.workspace .reference-card{margin-bottom:0}
+@media(max-width:350px){.mode-tabs-shell{padding-left:10px;padding-right:10px}}

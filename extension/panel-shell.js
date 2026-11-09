@@ -14,10 +14,11 @@ export async function setupPanelShell({getState}){
  const help=pop('panel-help','Доступ до сайту й допомога');const settings=document.querySelector('.settings');settings.open=true;settings.querySelector('summary').hidden=true;help.append(settings);
  const confirm=make('dialog','<h3>Скинути всі дані?</h3><p>Макети та результати буде видалено з цього пристрою. Токен Figma збережеться.</p><div class="dialog-actions"><button id="reset-cancel">Скасувати</button><button id="reset-confirm-action" class="primary">Скинути все</button></div>','shell-dialog');confirm.id='reset-confirm';document.body.append(confirm);
  const reset=$('reset-all').onclick;$('reset-all').onclick=()=>{if(menu.matches(':popover-open'))menu.hidePopover();confirm.showModal();$('reset-cancel').focus();};$('reset-cancel').onclick=()=>confirm.close();$('reset-confirm-action').onclick=async()=>{confirm.close();await reset();};
- const connection=pop('figma-status-menu','Підключення Figma');connection.dataset.editing='false';
+ const connection=pop('figma-status-menu','Доступ до Figma (API / MCP)');connection.dataset.editing='false';
  // Use an explicit handler: relying on popovertarget alone left the status chip inert
  // in some embedded side-panel builds. Opening while disconnected shows token setup.
  const chip=$('figma-status-chip');
+ chip.lastChild.textContent=' Підключити Figma MCP';
  chip.removeAttribute('popovertarget');
  chip.setAttribute('aria-controls',connection.id);
  chip.setAttribute('aria-expanded','false');
@@ -32,7 +33,7 @@ export async function setupPanelShell({getState}){
  connection.addEventListener('toggle',event=>{chip.setAttribute('aria-expanded',String(event.newState==='open'));});
  const entry=make('button','Підключити Figma');entry.id='connection-edit';connection.append(entry,$('figma-token-step'),$('figma-connected'));
  entry.onclick=()=>{connection.dataset.editing='true';$('figma-token').focus();};
- $('figma-token-step').querySelector('h3').textContent='Ключ доступу Figma';
+ $('figma-token-step').querySelector('h3').textContent='Токен доступу до Figma API';
  const compare=make('section','<h2 id="comparison-title">Порівняти з Figma</h2>','comparison-section');compare.id='reference-section';compare.setAttribute('aria-labelledby','comparison-title');compare.querySelector('h2').prepend($('figma-connected').querySelector('.figma-logo').cloneNode(true));
  const workspace=document.querySelector('.workspace'),reference=document.querySelector('.reference-card');compare.append(reference);workspace.remove();main.append(compare);
  document.querySelector('.reference-sources').hidden=true;$('source-figma').parentElement.setAttribute('aria-hidden','true');$('figma-source').hidden=false;$('json-source').hidden=false;for(const id of ['figma-source','json-source']){$(id).removeAttribute('role');$(id).removeAttribute('aria-labelledby');}
@@ -40,18 +41,18 @@ export async function setupPanelShell({getState}){
  const advanced=make('details','<summary>Налаштування порівняння</summary>','comparison-advanced');advanced.id='reference-advanced';
  const toggle=make('label',null,'check');toggle.append($('compare-enabled'),document.createTextNode('Порівнювати з макетом'));advanced.append(toggle);
  const editor=$('figma-editor');editor.querySelector('summary').textContent='Шари макета';editor.open=false;
- const linkStep=$('figma-link-step');editor.before(linkStep);linkStep.querySelector('h3').hidden=true;linkStep.querySelector('p').hidden=true;
+ const linkStep=$('figma-link-step');reference.prepend(linkStep);linkStep.hidden=false;linkStep.querySelector('h3').textContent='1. Підключіть макет';linkStep.querySelector('h3').hidden=false;linkStep.querySelector('p').textContent='Додайте посилання на фрейм Figma або імпортуйте JSON / ZIP. Доступ до Figma налаштовується окремо зверху.';linkStep.querySelector('p').hidden=false;
  const url=$('figma-url');url.type='text';url.placeholder='Вставте посилання на макет Figma';url.setAttribute('aria-label',url.placeholder);url.setAttribute('aria-describedby','layout-status');url.parentElement.firstChild.textContent='Макет для порівняння';
  const drop=make('div',null,'layout-drop');drop.id='layout-drop';url.parentElement.before(drop);drop.append(url.parentElement);drop.tabIndex=0;drop.setAttribute('aria-label','Додати макет: вставте посилання або перетягніть JSON чи ZIP');
- $('figma-load').hidden=true;editor.append($('figma-selection'));linkStep.append(editor);
- const connect=make('button','Підключити Figma', 'secondary full');connect.id='comparison-connect';connect.onclick=()=>{connection.dataset.editing='true';connection.showPopover();$('figma-token').focus();};reference.prepend(connect);
+ $('figma-load').hidden=true;editor.append($('figma-selection'));reference.append(editor);
+ // No duplicate credentials prompt in the layout step: token settings live in the top chip.
  const status=make('p',null,'notice');status.id='layout-status';status.dataset.state='empty';status.setAttribute('role','status');status.setAttribute('aria-live','polite');reference.prepend(status);
  const importer=$('import');importer.textContent='Обрати JSON / ZIP';const alternative=make('div','<span>або</span>','import-alternative');reference.append(alternative,importer);const fileHint=make('p','Перетягніть файл сюди або оберіть його з диска.','file-import-hint');reference.append(fileHint); // JSON remains available without a Figma account.
  const loaded=$('loaded-system');advanced.append($('figma-readiness'),$('system-mode'),$('theme-label'));loaded.after(advanced);const info=document.querySelector('.info-button');info.id='reference-info';info.className='text-button';info.textContent='Про порівняння';advanced.append(info);$('figma-use').textContent='Застосувати вибраний шар';
  $('remove-system').textContent='✕ Прибрати';$('replace').textContent='Замінити';
  const validate=()=>{if(!url.value.trim()){url.removeAttribute('aria-invalid');status.textContent='';status.dataset.state='empty';return false;}try{parseFigmaLink(url.value.trim());url.removeAttribute('aria-invalid');return true;}catch(error){status.textContent=error.message;status.dataset.state='error';url.setAttribute('aria-invalid','true');return false;}};
  let applying=false,lastApplied='';
- const apply=async()=>{if(applying||getState().busy||!validate())return;if(lastApplied===url.value.trim()&&getState().system)return;applying=true;status.textContent='Перевіряємо та застосовуємо макет…';status.dataset.state='validating';url.setAttribute('aria-busy','true');url.disabled=true;
+ const apply=async()=>{if(applying||getState().busy||!validate())return;if(lastApplied===url.value.trim()&&getState().system)return;if(!await getFigmaToken()){status.textContent='Для макета Figma спочатку додайте токен через верхню кнопку «Підключити Figma MCP». JSON / ZIP можна завантажити без токена.';status.dataset.state='error';openConnection();return;}applying=true;status.textContent='Перевіряємо та застосовуємо макет…';status.dataset.state='validating';url.setAttribute('aria-busy','true');url.disabled=true;
   try{const success=await $('figma-load').onclick({autoApply:true});if(success){lastApplied=url.value.trim();status.textContent='Макет застосовано';status.dataset.state='applied';}else{status.textContent=$('figma-message').textContent+(getState().system?' Попередній макет збережено.':'');status.dataset.state=$('figma-message').classList.contains('error')?'error':'empty';url.setAttribute('aria-invalid',String(status.dataset.state==='error'));}}
   finally{applying=false;url.disabled=false;url.removeAttribute('aria-busy');sync();}
  };
@@ -78,7 +79,7 @@ export async function setupPanelShell({getState}){
  async function access(){try{let [tab]=await chrome.tabs.query({active:true,currentWindow:true});if(tab?.url?.startsWith('chrome-extension://')){const saved=await chrome.storage.local.get('inspectorPage');tab=saved.inspectorPage?{id:saved.inspectorPage.tabId,url:saved.inspectorPage.url}:tab;}if(!tab?.url)return;const u=new URL(tab.url);let allowed=false;if(['http:','https:'].includes(u.protocol))allowed=await chrome.permissions.contains({origins:[u.protocol+'//'+u.hostname+'/*']});if(!allowed&&['http:','https:','file:'].includes(u.protocol)){try{const response=await chrome.scripting.executeScript({target:{tabId:tab.id},func:()=>true});allowed=response[0]?.result===true;}catch{}}banner.hidden=allowed;const protectedPage=!['http:','https:','file:'].includes(u.protocol);$('site-access-description').textContent=protectedPage?'На цій службовій сторінці Chrome інспекція недоступна.':'Потрібен доступ до цього сайту.';$('site-access-grant').hidden=protectedPage;}catch{banner.hidden=false;}}
  $('grant').addEventListener('click',()=>setTimeout(access,100));
  let connected=false;
- function connectionState(value,error=false){connected=value;$('figma-status-dot').textContent=error?'!':value?'●':'○';$('figma-status-chip').dataset.state=error?'error':value?'connected':'disconnected';$('figma-status-chip').setAttribute('aria-label',error?'Помилка підключення Figma':value?'Figma підключено':'Figma не підключено');entry.hidden=value;connect.hidden=value;if(value)connection.dataset.editing='false';}
+ function connectionState(value,error=false){connected=value;$('figma-status-dot').textContent=error?'!':value?'●':'○';$('figma-status-chip').dataset.state=error?'error':value?'connected':'disconnected';$('figma-status-chip').setAttribute('aria-label',error?'Помилка підключення Figma':value?'Figma підключено':'Figma не підключено');entry.hidden=value;chip.lastChild.textContent=value?' Figma підключено':' Підключити Figma MCP';if(value)connection.dataset.editing='false';}
  document.addEventListener('qa:figma-connection',event=>{const newlyConnected=event.detail.connected&&(!connected||connection.matches(':popover-open'));connectionState(event.detail.connected,event.detail.error);if(newlyConnected){if(connection.matches(':popover-open'))connection.hidePopover();url.focus();}});
  $('figma-token-help').addEventListener('toggle',event=>{if(event.newState==='closed'&&!connected){connection.dataset.editing='true';connection.showPopover();$('figma-token').focus();}});
  chrome.storage.onChanged.addListener((changes,area)=>{if(area==='local'&&changes.figmaAccessToken)connectionState(Boolean(changes.figmaAccessToken.newValue));});connectionState(Boolean(await getFigmaToken()));
@@ -92,7 +93,7 @@ export async function setupPanelShell({getState}){
   const fileError=$('import-message').classList.contains('error')&&!$('import-message').hidden;
   if(!applying&&fileError&&status.textContent!==$('import-message').textContent){status.textContent=$('import-message').textContent;status.dataset.state='error';}
   if(!state.system&&status.dataset.state==='applied'){status.textContent='';status.dataset.state='empty';lastApplied='';}
-  if($('comparison-connect').disabled!==state.busy)$('comparison-connect').disabled=state.busy;
+  // The top connection chip remains available independently of scan state.
  }finally{updating=false;}}
  const observer=new MutationObserver(()=>sync());observer.observe(main,{subtree:true,childList:true,attributes:true,attributeFilter:['disabled','hidden','class','aria-pressed']});
  document.addEventListener('qa:ui-state',sync);sync();await access();

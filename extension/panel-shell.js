@@ -15,6 +15,21 @@ export async function setupPanelShell({getState}){
  const confirm=make('dialog','<h3>Скинути всі дані?</h3><p>Макети та результати буде видалено з цього пристрою. Токен Figma збережеться.</p><div class="dialog-actions"><button id="reset-cancel">Скасувати</button><button id="reset-confirm-action" class="primary">Скинути все</button></div>','shell-dialog');confirm.id='reset-confirm';document.body.append(confirm);
  const reset=$('reset-all').onclick;$('reset-all').onclick=()=>{if(menu.matches(':popover-open'))menu.hidePopover();confirm.showModal();$('reset-cancel').focus();};$('reset-cancel').onclick=()=>confirm.close();$('reset-confirm-action').onclick=async()=>{confirm.close();await reset();};
  const connection=pop('figma-status-menu','Підключення Figma');connection.dataset.editing='false';
+ // Use an explicit handler: relying on popovertarget alone left the status chip inert
+ // in some embedded side-panel builds. Opening while disconnected shows token setup.
+ const chip=$('figma-status-chip');
+ chip.removeAttribute('popovertarget');
+ chip.setAttribute('aria-controls',connection.id);
+ chip.setAttribute('aria-expanded','false');
+ const openConnection=()=>{
+  if(connection.matches(':popover-open')){connection.hidePopover();return;}
+  connection.dataset.editing=connected?'false':'true';
+  connection.showPopover();
+  chip.setAttribute('aria-expanded','true');
+  if(!connected)requestAnimationFrame(()=>$('figma-token').focus());
+ };
+ chip.addEventListener('click',openConnection);
+ connection.addEventListener('toggle',event=>{chip.setAttribute('aria-expanded',String(event.newState==='open'));});
  const entry=make('button','Підключити Figma');entry.id='connection-edit';connection.append(entry,$('figma-token-step'),$('figma-connected'));
  entry.onclick=()=>{connection.dataset.editing='true';$('figma-token').focus();};
  $('figma-token-step').querySelector('h3').textContent='Ключ доступу Figma';

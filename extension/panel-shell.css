@@ -49,6 +49,14 @@ body.compact-ui{background:#fff;min-width:300px}
 .compact-ui .conflict-select{font-size:12px;border-radius:0}
 .compact-ui .conflict-select:hover:not(:disabled){background:transparent}
 .compact-ui .comparison-section{border-top:1px solid var(--line);margin:0;padding:16px 0 0}
+/* Figma-only flow must never appear before token setup; CSS also protects against stale state updates. */
+.compact-ui .comparison-section[hidden],.compact-ui [aria-hidden=true].comparison-section{display:none!important}
+.compact-ui .comparison-stages{border-top:1px solid var(--line);padding-top:8px;margin-top:12px}
+.compact-ui .comparison-stage{padding:10px 0;color:var(--muted);opacity:.55}
+.compact-ui .comparison-stage strong{font-size:13px}
+.compact-ui .comparison-stage p{font-size:12px;margin:4px 0 0}
+.compact-ui .comparison-stage.is-ready{opacity:1;color:var(--ink)}
+
 .compact-ui .comparison-section>summary{font-size:13px;min-height:36px;padding:8px 0;color:var(--ink)}
 .compact-ui .reference-card{padding:12px 0 0;margin:0;background:transparent;border:0;border-radius:0}
 .compact-ui .reference-sources,.compact-ui .reference-heading,.compact-ui #reference-hint{display:none}

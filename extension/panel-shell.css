@@ -55,7 +55,9 @@ body.compact-ui{background:#fff;min-width:300px}
 .compact-ui #figma-source,.compact-ui #json-source{display:contents}
 .compact-ui #figma-source[hidden],.compact-ui #json-source[hidden]{display:contents!important}
 .compact-ui #figma-link-step{margin:0}
-.compact-ui #figma-link-step>h3,.compact-ui #figma-link-step>p,.compact-ui #figma-load{display:none}
+.compact-ui #figma-load{display:none}
+.compact-ui #figma-link-step>h3{display:block;font-weight:600;margin:0 0 4px}
+.compact-ui #figma-link-step>p{display:block;margin:0 0 12px;color:var(--muted)}
 .compact-ui input:not([type=checkbox]),.compact-ui select,.compact-ui textarea{border-radius:var(--radius-sm);font-size:13px;min-height:40px;border-color:#c8c1d5;padding:10px 12px;color:var(--ink)}
 .compact-ui #figma-source label{font-size:12px;margin:0 0 8px}
 .compact-ui #figma-url{font-size:13px;line-height:1.5}

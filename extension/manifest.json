@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "QA Inspector",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Inspect CSS and compare selected elements against design tokens or a Figma frame.",
   "minimum_chrome_version": "116",
   "permissions": [
